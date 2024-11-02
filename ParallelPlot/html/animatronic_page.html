@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Details</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/appearance.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="au_page.html" class="nav-link">Back to au</a>
+        <span class="nav-title">Character Details</span>
+      </nav>
+  <div class="container">
+    <h1 id="botTitle">Bot Details</h1>
+    <p id="botInfo">Enter the appearance details for this bot below:</p>
+
+   <!-- Appearance Form -->
+<div class="appearance-form">
+  <label for="mainColor">Main Color:</label>
+  <input type="text" id="mainColor" placeholder="e.g., Red, Blue" />
+
+  <label for="height">Height:</label>
+  <input type="text" id="height" placeholder="e.g., 6ft, 180cm" />
+
+  <label for="version">Version:</label>
+  <input type="text" id="version" placeholder="e.g., 1.0, 2.1" />
+
+  <label for="soul">Soul:</label>
+  <input type="text" id="soul" placeholder="e.g., Human, Animal" />
+
+  <label for="eyeColor">Eye Color:</label>
+  <input type="text" id="eyeColor" placeholder="e.g., Blue, Brown" />
+
+      <div class="button-group">
+        <button onclick="saveAppearance()">Save Appearance</button>
+        <button onclick="deleteAppearance()" class="delete-button">Delete Appearance</button>
+      </div>
+    </div>
+
+    <!-- Display Saved Appearance Details -->
+    <div id="appearanceDetails" class="appearance-details"></div>
+  </div>
+  <script src="../javascript/animatronic_page.js"></script>
+</body>
+</html>

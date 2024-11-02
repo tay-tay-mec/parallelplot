@@ -1,0 +1,174 @@
+/* General styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212; /* Dark background for the entire page */
+    color: #e0e0e0; /* Light text color for contrast */
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.nav-link {
+    color: #f1c40f; /* Bright color for links */
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #f39c12; /* Change on hover */
+}
+
+.nav-title {
+    color: #eaeaea;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 600px; /* Limit width for better readability */
+    margin: 80px auto; /* Center container and offset for navbar */
+    padding: 30px;
+    background-color: #1f1f1f; /* Dark background for the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    text-align: center; /* Center text */
+}
+
+h1 {
+    font-size: 2em; /* Heading size */
+    color: #ff6f61; /* Bright heading color */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+p {
+    margin-bottom: 20px; /* Space below paragraphs */
+    font-size: 1.1em; /* Slightly larger font for clarity */
+}
+
+/* Appearance Form Styles */
+.appearance-form {
+    margin-top: 20px; /* Space above the form */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px; /* Space between inputs */
+}
+
+label {
+    text-align: left; /* Align labels to the left */
+    font-weight: bold; /* Bold labels */
+    margin-bottom: 5px; /* Space below labels */
+    color: #f1c40f; /* Bright label color */
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    padding: 10px; /* Padding inside inputs */
+    border: 2px solid #444; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #333; /* Input background */
+    color: #eaeaea; /* Text color */
+    font-size: 1em; /* Font size */
+    width: 100%; /* Full width */
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resize only */
+    height: 80px; /* Set a default height */
+}
+
+/* Button Group Styles */
+.button-group {
+    display: flex;
+    justify-content: space-between; /* Space buttons evenly */
+    margin-top: 15px; /* Space above button group */
+}
+
+button {
+    padding: 10px 20px; /* Button padding */
+    font-size: 1em; /* Button text size */
+    color: #fff; /* Button text color */
+    background-color: #ff6f61; /* Button background color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #ff4f41; /* Darker shade on hover */
+}
+
+button.delete-button {
+    background-color: #e74c3c; /* Red for delete button */
+}
+
+button.delete-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Appearance Details Styling */
+.appearance-details {
+    margin-top: 30px; /* Space above details */
+    background-color: #444; /* Darker background for contrast */
+    padding: 20px; /* Padding inside details */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
+}
+
+.appearance-details h3 {
+    margin-bottom: 15px; /* Space below title */
+    color: #ff6f61; /* Color for the title */
+    font-size: 1.5em; /* Title font size */
+}
+
+.appearance-details p {
+    margin: 8px 0; /* Space around paragraphs */
+    color: #eaeaea; /* Light gray for text */
+    line-height: 1.5; /* Increase line height for readability */
+}
+
+.appearance-details strong {
+    color: #f1c40f; /* Highlight important text */
+}
+
+/* Add a list style for features or characteristics */
+.appearance-details ul {
+    list-style: none; /* Remove default list styling */
+    padding-left: 0; /* Remove padding */
+}
+
+.appearance-details li {
+    background-color: #555; /* Background for list items */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px; /* Padding inside list items */
+    margin: 5px 0; /* Space between list items */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.appearance-details li:hover {
+    background-color: #666; /* Darken on hover */
+}
