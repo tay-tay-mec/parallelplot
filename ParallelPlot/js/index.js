@@ -1,6 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadAUs(); // Load existing AUs on page load
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('lowContrastToggle');
+
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('lowContrast') === 'true') {
+        document.body.classList.add('low-contrast');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('low-contrast');
+        
+        // Save the user's preference in local storage
+        const isLowContrast = document.body.classList.contains('low-contrast');
+        localStorage.setItem('lowContrast', isLowContrast);
+    });
+});
 
 function loadAUs() {
     const auList = document.getElementById('auList');
