@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AU Page</title>
+    <link rel="stylesheet" href="../css/styles.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <header>
+        <h1 id="auTitle"></h1> <!-- Title will be set based on selected AU -->
+    </header>
+
+    <nav>
+        <a href="../html/index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h2>Add a Human</h2>
+        <input type="text" id="humanName" placeholder="Enter Human Name">
+        <button onclick="addHuman()">Add Human</button>
+
+        <h2>Your Humans</h2>
+        <ul class="human-list" id="humanList">
+            <!-- Added humans will appear here -->
+        </ul>
+    </div>
+
+    <script src="../js/au.js"></script> <!-- Link to au.js file -->
+</body>
+</html>

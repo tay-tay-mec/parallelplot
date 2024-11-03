@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Info</title>
+    <link rel="stylesheet" href="../css/styles.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <header>
+        <h1 id="humanName"></h1> <!-- This will show the human's name -->
+    </header>
+
+    <nav>
+        <a href="../html/index.html">Home</a>
+        <a href="../html/au.html">Back to AU</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h2>Human Information</h2>
+        <div id="humanDetails"></div> <!-- Area to display human details -->
+
+        <h2>Add Appearance Details</h2>
+        <div id="appearanceForm">
+            <label for="skinColor">Skin Color:</label>
+            <input type="color" id="skinColor" onchange="updateColor('skinColor', 'skinColorHex', 'skinColorSquare')">
+            <span id="skinColorSquare" class="color-square"></span>
+            <input type="text" id="skinColorHex" placeholder="or enter HEX code">
+
+            <label for="eyeColor">Eye Color:</label>
+            <input type="color" id="eyeColor" onchange="updateColor('eyeColor', 'eyeColorHex', 'eyeColorSquare')">
+            <span id="eyeColorSquare" class="color-square"></span>
+            <input type="text" id="eyeColorHex" placeholder="or enter HEX code">
+
+            <label for="hairColor">Hair Color:</label>
+            <input type="color" id="hairColor" onchange="updateColor('hairColor', 'hairColorHex', 'hairColorSquare')">
+            <span id="hairColorSquare" class="color-square"></span>
+            <input type="text" id="hairColorHex" placeholder="or enter HEX code">
+
+            <label for="hairLength">Hair Length:</label>
+            <input type="text" id="hairLength" placeholder="e.g., short, long">
+
+            <label for="hairStructure">Hair Structure:</label>
+            <input type="text" id="hairStructure" placeholder="e.g., curly, straight">
+
+            <label for="hairStyle">Hair Style:</label>
+            <input type="text" id="hairStyle" placeholder="e.g., bun, ponytail">
+
+            <label for="clothingStyle">Clothing Style:</label>
+            <input type="text" id="clothingStyle" placeholder="e.g., casual, formal">
+
+            <label for="birthYear">Birth Year:</label>
+            <input type="number" id="birthYear" placeholder="e.g., 1990">
+
+            <label for="deathYear">Death Year:</label>
+            <input type="number" id="deathYear" placeholder="e.g., 2020">
+
+            <label for="extras">Extras:</label>
+            <textarea id="extras" placeholder="Any extra details..."></textarea>
+
+            <button onclick="saveAppearance()">Save Appearance</button>
+        </div>
+
+        <h2>Appearance Details</h2>
+        <div id="appearanceDetails" class="appearance-box"></div> <!-- Area to display appearance details -->
+
+        <h2>Add Backstory Details</h2>
+        <div id="backstoryForm">
+            <label for="causeOfDeath">Cause of Death:</label>
+            <input type="text" id="causeOfDeath" placeholder="Cause of Death">
+
+            <label for="family">Family:</label>
+            <input type="text" id="family" placeholder="Family">
+
+            <label for="friends">Friends:</label>
+            <input type="text" id="friends" placeholder="Friends">
+
+            <label for="enemies">Enemies:</label>
+            <input type="text" id="enemies" placeholder="Enemies">
+
+            <label for="nicknames">Nicknames:</label>
+            <input type="text" id="nicknames" placeholder="Nicknames">
+
+            <button onclick="saveBackstory()">Save Backstory</button>
+        </div>
+
+        <h2>Backstory Details</h2>
+        <div id="backstoryDetails" class="backstory-box"></div> <!-- Area to display backstory details -->
+    </div>
+
+    <script src="../js/human.js"></script> <!-- Link to human.js file -->
+</body>
+</html>

@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FNaF AU Manager</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallel Plot</title>
+    <link rel="stylesheet" href="../css/styles.css"> <!-- Link to CSS file -->
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <span class="nav-title">AU Details</span>
-      </nav>
-    <div class="container">
-    <h1>FNaF AU Manager</h1>
-    <div class="input-group">
-        <input type="text" id="auName" placeholder="Enter AU Name" />
+
+<header>
+    <h1>Parallel Plot</h1>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+    <div class="add-au">
+        <h2>Add an AU</h2>
+        <input type="text" id="auName" placeholder="Enter AU Name">
         <button onclick="addAU()">Add AU</button>
     </div>
-    <div id="auList" class="au-list"></div>
+
+    <h2>Your AUs</h2>
+    <div class="au-box"> <!-- AU box added here -->
+        <ul class="au-list" id="auList">
+            <!-- Added AUs will appear here -->
+        </ul>
     </div>
-    <script src="../javascript/script.js"></script>
+</div>
+
+<script src="../js/index.js"></script> <!-- Link to index.js file -->
 </body>
 </html>
