@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Human Info</title>
+    <title>Character Info</title>
     <link rel="stylesheet" href="../css/styles.css"> <!-- Link to CSS file -->
 </head>
 <body>
@@ -19,7 +19,7 @@
     </nav>
 
     <div class="container">
-        <h2>Human Information</h2>
+        <h2>Character Information</h2>
         <div id="humanDetails"></div> <!-- Area to display human details -->
 
         <h2>Add Appearance Details</h2>
@@ -60,6 +60,11 @@
             <label for="extras">Extras:</label>
             <textarea id="extras" placeholder="Any extra details..."></textarea>
 
+            <label for="humanImage">Upload Image:</label>
+            <input type="file" id="humanImage" accept="image/*" onchange="previewImage(event)">
+
+            <img id="imagePreview" src="" alt="Image Preview" style="display:none; max-width: 200px; margin-top: 10px;">
+            
             <button onclick="saveAppearance()">Save Appearance</button>
         </div>
 
@@ -73,6 +78,9 @@
 
             <label for="family">Family:</label>
             <input type="text" id="family" placeholder="Family">
+
+            <label for="age">Age:</label>
+            <input type="text" id="age" placeholder="Age">
 
             <label for="friends">Friends:</label>
             <input type="text" id="friends" placeholder="Friends">

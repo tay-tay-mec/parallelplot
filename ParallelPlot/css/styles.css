@@ -167,3 +167,61 @@ nav a {
 nav a:hover {
     text-decoration: underline;
 }
+.timeline-section {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ff4000;
+    border-radius: 8px;
+    background-color: #1c1c1c;
+    color: #ffbb00;
+}
+
+.timeline-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.timeline-form input,
+.timeline-form textarea,
+.timeline-form button {
+    padding: 8px;
+    border: 1px solid #0d0d0d;
+    border-radius: 5px;
+    background-color: #401306;
+    color: #ffbb00;
+}
+
+.timeline-form button {
+    cursor: pointer;
+    background-color: #ff4000;
+    color: #1c1c1c;
+}
+
+.timeline-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.timeline-event {
+    padding: 10px;
+    border: 1px solid #ff4000;
+    border-radius: 5px;
+    background-color: #0d0d0d;
+    color: #ffbb00;
+}
+.image-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Style for appearance details image */
+.appearance-box img {
+    display: block;
+    margin: 10px auto; /* Centering image inside appearance box */
+    max-width: 200px;
+}

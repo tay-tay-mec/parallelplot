@@ -18,16 +18,36 @@
     </nav>
 
     <div class="container">
-        <h2>Add a Human</h2>
-        <input type="text" id="humanName" placeholder="Enter Human Name">
-        <button onclick="addHuman()">Add Human</button>
+        <h2>Add a Character</h2>
+        <input type="text" id="humanName" placeholder="Enter Name">
+        <button onclick="addHuman()">Add Character</button>
 
-        <h2>Your Humans</h2>
+        <h2>Your Characters</h2>
         <ul class="human-list" id="humanList">
             <!-- Added humans will appear here -->
         </ul>
     </div>
-
+    
+    <div class="timeline-section">
+        <h2>Timeline</h2>
+    
+        <!-- Form to add timeline events -->
+        <div class="timeline-form">
+            <label for="eventDate">Date:</label>
+            <input type="date" id="eventDate">
+            
+            <label for="eventDescription">Description:</label>
+            <textarea id="eventDescription" placeholder="Event description..."></textarea>
+            
+            <button onclick="addTimelineEvent()">Add Event</button>
+        </div>
+    
+        <!-- Area to display saved timeline events -->
+        <div id="timelineDisplay" class="timeline-box">
+            <!-- Timeline events will appear here -->
+        </div>
+    </div>
+    
     <script src="../js/au.js"></script> <!-- Link to au.js file -->
 </body>
 </html>
