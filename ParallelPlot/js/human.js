@@ -39,6 +39,7 @@ function saveAppearance() {
         clothingStyle: document.getElementById('clothingStyle').value,
         birthYear: document.getElementById('birthYear').value,
         deathYear: document.getElementById('deathYear').value,
+        species: document.getElementById('species').value,
         extras: document.getElementById('extras').value,
         image: document.getElementById('imagePreview').src // Store the base64 image data
     };
@@ -84,6 +85,7 @@ function loadAppearanceDetails(humanName) {
                     <p><strong>Clothing Style:</strong> ${appearance.clothingStyle}</p>
                     <p><strong>Birth Year:</strong> ${appearance.birthYear}</p>
                     <p><strong>Death Year:</strong> ${appearance.deathYear}</p>
+                    <p><strong>Species:</strong> ${appearance.species}</p>
                     <p><strong>Extras:</strong> ${appearance.extras}</p>
                     ${appearance.image ? `<img src="${appearance.image}" alt="Image of ${human.name}" style="max-width: 200px; margin-top: 10px;">` : ''}
                 </div>
