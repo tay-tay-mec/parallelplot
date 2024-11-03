@@ -109,15 +109,15 @@ function loadAppearanceDetails(humanName) {
             const appearance = human.appearance;
             appearanceDiv.innerHTML = `
                 <div>
-                    <p><strong>Skin Color:</strong> <span style="background-color: ${appearance.skinColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.skinColor})</p>
+                    <p><strong>Skin Color/Main Color:</strong> <span style="background-color: ${appearance.skinColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.skinColor})</p>
                     <p><strong>Eye Color:</strong> <span style="background-color: ${appearance.eyeColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.eyeColor})</p>
-                    <p><strong>Hair Color:</strong> <span style="background-color: ${appearance.hairColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.hairColor})</p>
-                    <p><strong>Hair Length:</strong> ${appearance.hairLength}</p>
-                    <p><strong>Hair Structure:</strong> ${appearance.hairStructure}</p>
-                    <p><strong>Hair Style:</strong> ${appearance.hairStyle}</p>
+                    <p><strong>Hair Color/Secondary Color:</strong> <span style="background-color: ${appearance.hairColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.hairColor})</p>
+                    <p><strong>Hair Length/Texture:</strong> ${appearance.hairLength}</p>
+                    <p><strong>Hair Structure/Material:</strong> ${appearance.hairStructure}</p>
+                    <p><strong>Hair Style/Creator:</strong> ${appearance.hairStyle}</p>
                     <p><strong>Clothing Style:</strong> ${appearance.clothingStyle}</p>
-                    <p><strong>Birth Year:</strong> ${appearance.birthYear}</p>
-                    <p><strong>Death Year:</strong> ${appearance.deathYear}</p>
+                    <p><strong>Birth Year/Creation Year:</strong> ${appearance.birthYear}</p>
+                    <p><strong>Death Year/Last Year Of Usage:</strong> ${appearance.deathYear}</p>
                     <p><strong>Extras:</strong> ${appearance.extras}</p>
                     <div style="text-align: center;">
                         ${appearance.imageSrc ? `<img src="${appearance.imageSrc}" alt="Human Image" style="max-width: 200px;">` : ''}
@@ -177,9 +177,9 @@ function loadBackstoryDetails(humanName) {
             const backstory = human.backstory;
             backstoryDiv.innerHTML = `
                 <div>
-                    <p><strong>Cause of Death:</strong> ${backstory.causeOfDeath}</p>
-                    <p><strong>Family:</strong> ${backstory.family}</p>
-                    <p><strong>Age:</strong> ${backstory.age}</p>
+                    <p><strong>Cause of Death/Reason For Diactivation:</strong> ${backstory.causeOfDeath}</p>
+                    <p><strong>Family/Group:</strong> ${backstory.family}</p>
+                    <p><strong>Age/Years Of Usage:</strong> ${backstory.age}</p>
                     <p><strong>Friends:</strong> ${backstory.friends}</p>
                     <p><strong>Enemies:</strong> ${backstory.enemies}</p>
                     <p><strong>Nicknames:</strong> ${backstory.nicknames}</p>
