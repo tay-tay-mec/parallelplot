@@ -1,41 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
     initializePage();
+    setupLowContrastToggle();
+    loadFamilies();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.getElementById('lowContrastToggle');
+function initializePage() {
+    const auTitleElement = document.getElementById('auTitle');
+    const auTitle = localStorage.getItem('currentAU');
+    if (auTitleElement && auTitle) {
+        auTitleElement.textContent = auTitle;
+    }
 
-    // Check if low contrast mode was previously enabled
+    loadHumans();
+    loadFamilies();
+    loadTimelineEvents();
+}
+
+function setupLowContrastToggle() {
+    const toggleButton = document.getElementById('lowContrastToggle');
     if (localStorage.getItem('lowContrast') === 'true') {
         document.body.classList.add('low-contrast');
     }
 
     toggleButton.addEventListener('click', () => {
         document.body.classList.toggle('low-contrast');
-        
-        // Save the user's preference in local storage
         const isLowContrast = document.body.classList.contains('low-contrast');
         localStorage.setItem('lowContrast', isLowContrast);
     });
-});
-
-function initializePage() {
-    const auTitleElement = document.getElementById('auTitle');
-    const toggleButton = document.getElementById('lowContrastToggle');
-    
-    // Display the AU name if it exists in localStorage
-    const auTitle = localStorage.getItem('currentAU');
-    if (auTitleElement && auTitle) {
-        auTitleElement.textContent = auTitle;
-    }
-
-    // Load humans and timeline events for the AU
-    loadHumans();
-    loadTimelineEvents();  // Updated to load saved events
-
-
-    }
-
+}
 
 // HUMAN FUNCTIONS
 
@@ -43,8 +35,7 @@ function loadHumans() {
     const humanList = document.getElementById('humanList');
     if (!humanList) return;
 
-    humanList.innerHTML = ''; // Clear the list before loading
-
+    humanList.innerHTML = '';
     const humans = JSON.parse(localStorage.getItem('humans')) || {};
     const currentAU = localStorage.getItem('currentAU');
     const currentHumans = humans[currentAU] || [];
@@ -54,7 +45,6 @@ function loadHumans() {
     });
 }
 
-// Add a new human and save to local storage
 function addHuman() {
     const humanName = document.getElementById('humanName').value;
     if (!humanName) return;
@@ -75,7 +65,6 @@ function addHuman() {
     document.getElementById('humanName').value = '';
 }
 
-// Display a human in the list with options
 function addHumanToList(humanName, color) {
     const humanList = document.getElementById('humanList');
     if (!humanList) return;
@@ -122,11 +111,10 @@ function addHumanToList(humanName, color) {
     humanList.appendChild(li);
 }
 
-// Apply and save color for human
 function applyHumanColor(humanName, color) {
     const humans = JSON.parse(localStorage.getItem('humans')) || {};
     const currentAU = localStorage.getItem('currentAU');
-    
+
     if (humans[currentAU]) {
         humans[currentAU] = humans[currentAU].map(human => 
             human.name === humanName ? { ...human, color } : human
@@ -135,7 +123,6 @@ function applyHumanColor(humanName, color) {
     }
 }
 
-// Edit human's name
 function editHuman(oldName) {
     const newName = prompt("Enter new name:", oldName);
     if (newName && newName !== oldName) {
@@ -147,16 +134,15 @@ function editHuman(oldName) {
                 human.name === oldName ? { ...human, name: newName } : human
             );
             localStorage.setItem('humans', JSON.stringify(humans));
-            loadHumans(); // Reload the humans list to reflect the updated name
+            loadHumans();
         }
     }
 }
 
-// Delete a human
 function deleteHuman(humanName) {
     const humans = JSON.parse(localStorage.getItem('humans')) || {};
     const currentAU = localStorage.getItem('currentAU');
-    
+
     if (humans[currentAU]) {
         humans[currentAU] = humans[currentAU].filter(human => human.name !== humanName);
         localStorage.setItem('humans', JSON.stringify(humans));
@@ -166,7 +152,7 @@ function deleteHuman(humanName) {
 
 // TIMELINE FUNCTIONS
 
-let timelineEvents = []; // Store events for the current AU in memory
+let timelineEvents = [];
 
 function loadTimelineEvents() {
     const storedEvents = JSON.parse(localStorage.getItem("timelineEvents")) || {};
@@ -179,7 +165,7 @@ function renderTimeline() {
     const timelineBox = document.getElementById("timeline-box");
     if (!timelineBox) return;
 
-    timelineBox.innerHTML = ""; // Clear the timeline display
+    timelineBox.innerHTML = "";
 
     timelineEvents.forEach((event, index) => {
         const eventElement = document.createElement("div");
@@ -197,7 +183,6 @@ function renderTimeline() {
     saveTimelineEvents();
 }
 
-// Add a new timeline event
 function addTimelineEvent() {
     const title = document.getElementById("event-title").value;
     const description = document.getElementById("event-description").value;
@@ -207,12 +192,11 @@ function addTimelineEvent() {
         timelineEvents.push(event);
         renderTimeline();
 
-        document.getElementById("event-title").value = ""; // Clear input
+        document.getElementById("event-title").value = "";
         document.getElementById("event-description").value = "";
     }
 }
 
-// Save timeline events to localStorage
 function saveTimelineEvents() {
     const currentAU = localStorage.getItem("currentAU");
     const storedEvents = JSON.parse(localStorage.getItem("timelineEvents")) || {};
@@ -220,7 +204,6 @@ function saveTimelineEvents() {
     localStorage.setItem("timelineEvents", JSON.stringify(storedEvents));
 }
 
-// Edit a timeline event
 function editEvent(id) {
     const event = timelineEvents.find(event => event.id === id);
     if (event) {
@@ -235,13 +218,11 @@ function editEvent(id) {
     }
 }
 
-// Delete a timeline event
 function deleteEvent(id) {
     timelineEvents = timelineEvents.filter(event => event.id !== id);
     renderTimeline();
 }
 
-// Move an event up in the list
 function moveEventUp(index) {
     if (index > 0) {
         [timelineEvents[index - 1], timelineEvents[index]] = [timelineEvents[index], timelineEvents[index - 1]];
@@ -256,3 +237,112 @@ function moveEventDown(index) {
     }
 }
 
+// FAMILY FUNCTIONS
+
+function loadFamilies() {
+    const familyList = document.getElementById('familyList');
+    familyList.innerHTML = '';
+
+    const families = JSON.parse(localStorage.getItem('families')) || {};
+    const currentAU = localStorage.getItem('currentAU');
+    const currentFamilies = families[currentAU] || [];
+
+    currentFamilies.forEach(family => {
+        addFamilyToList(family.name);
+    });
+}
+
+function addFamily() {
+    const familyName = document.getElementById('familyName').value;
+    if (!familyName) return;
+
+    const families = JSON.parse(localStorage.getItem('families')) || {};
+    const currentAU = localStorage.getItem('currentAU');
+
+    if (!families[currentAU]) {
+        families[currentAU] = [];
+    }
+
+    if (!families[currentAU].some(family => family.name === familyName)) {
+        families[currentAU].push({ name: familyName });
+        localStorage.setItem('families', JSON.stringify(families));
+        addFamilyToList(familyName);
+    }
+
+    document.getElementById('familyName').value = '';
+}
+
+function addFamilyToList(familyName) {
+    const familyList = document.getElementById('familyList');
+    const li = document.createElement('li');
+
+    const familyButton = document.createElement('button');
+    familyButton.textContent = familyName;
+    familyButton.onclick = () => {
+        localStorage.setItem('currentFamily', familyName);
+        window.location.href = '../html/familyTree.html';
+    };
+// Edit button
+const editButton = document.createElement('button');
+editButton.textContent = 'Edit';
+editButton.className = 'edit-button';
+editButton.onclick = () => editFamily(familyName);
+
+// Delete button
+const deleteButton = document.createElement('button');
+deleteButton.textContent = 'Delete';
+deleteButton.className = 'delete-button';
+deleteButton.onclick = () => deleteFamily(familyName);
+
+// Append elements to list item
+li.appendChild(familyButton);
+li.appendChild(editButton);
+li.appendChild(deleteButton);
+familyList.appendChild(li);
+    li.appendChild(familyButton);
+    familyList.appendChild(li);
+}
+
+
+// Edit a family's name
+function editFamily(oldName) {
+    const newName = prompt("Enter a new name for the family:", oldName);
+    if (newName && newName !== oldName) {
+        const families = JSON.parse(localStorage.getItem('families')) || {};
+        const currentAU = localStorage.getItem('currentAU');
+
+        // Update family name
+        if (families[currentAU]) {
+            families[currentAU] = families[currentAU].map(family =>
+                family.name === oldName ? { ...family, name: newName } : family
+            );
+            localStorage.setItem('families', JSON.stringify(families));
+            loadFamilies();
+        }
+
+        // Update currentFamily if it was the one being edited
+        if (localStorage.getItem('currentFamily') === oldName) {
+            localStorage.setItem('currentFamily', newName);
+        }
+    }
+}
+
+// Delete a family
+function deleteFamily(familyName) {
+    if (confirm(`Are you sure you want to delete the family "${familyName}"? This action cannot be undone.`)) {
+        const families = JSON.parse(localStorage.getItem('families')) || {};
+        const currentAU = localStorage.getItem('currentAU');
+
+        // Remove the family from the current AU's list
+        if (families[currentAU]) {
+            families[currentAU] = families[currentAU].filter(family => family.name !== familyName);
+            localStorage.setItem('families', JSON.stringify(families));
+            loadFamilies();
+        }
+
+        // Clear currentFamily if it was the one being deleted
+        if (localStorage.getItem('currentFamily') === familyName) {
+            localStorage.removeItem('currentFamily');
+        }
+    }
+}

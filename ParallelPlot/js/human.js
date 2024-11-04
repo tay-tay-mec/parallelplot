@@ -63,7 +63,8 @@ function previewImage(event) {
 function saveAppearance() {
     const appearance = {
         skinColor: document.getElementById('skinColor').value,
-        eyeColor: document.getElementById('eyeColor').value,
+        LeyeColor: document.getElementById('LeyeColor').value,
+        ReyeColor: document.getElementById('ReyeColor').value,
         hairColor: document.getElementById('hairColor').value,
         hairLength: document.getElementById('hairLength').value,
         hairStructure: document.getElementById('hairStructure').value,
@@ -110,7 +111,8 @@ function loadAppearanceDetails(humanName) {
             appearanceDiv.innerHTML = `
                 <div>
                     <p><strong>Skin Color/Main Color:</strong> <span style="background-color: ${appearance.skinColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.skinColor})</p>
-                    <p><strong>Eye Color:</strong> <span style="background-color: ${appearance.eyeColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.eyeColor})</p>
+                    <p><strong>Left Eye Color:</strong> <span style="background-color: ${appearance.LeyeColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.LeyeColor})</p>
+                    <p><strong>Right Eye Color:</strong> <span style="background-color: ${appearance.ReyeColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.ReyeColor})</p>
                     <p><strong>Hair Color/Secondary Color:</strong> <span style="background-color: ${appearance.hairColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.hairColor})</p>
                     <p><strong>Hair Length/Texture:</strong> ${appearance.hairLength}</p>
                     <p><strong>Hair Structure/Material:</strong> ${appearance.hairStructure}</p>
