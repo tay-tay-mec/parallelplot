@@ -1,22 +1,22 @@
-body {
+.low-contrast body {
     background-color: #1c1c1c; /* Dark background for the body */
-    color: #ffbb00; /* Light yellow text color */
+    color: #b56d00; /* Light orange text color */
     font-family: Arial, sans-serif; /* Font family for the text */
 }
 
-header {
+.low-contrast header {
     text-align: center; /* Center the header text */
     margin-bottom: 20px; /* Space below the header */
 }
 
-nav {
+.low-contrast nav {
     background-color: #401306; /* Dark background for the nav */
     padding: 10px 0; /* Padding for top and bottom */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
 
-nav a {
-    color: #ffbb00; /* Light yellow text color for links */
+.low-contrast nav a {
+    color: #b56d00; /* Light orange text color for links */
     text-decoration: none; /* Remove underline from links */
     padding: 10px 15px; /* Padding around links */
     margin: 0 10px; /* Margin between links */
@@ -24,22 +24,38 @@ nav a {
     transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
-nav a:hover {
-    background-color: #ff4000; /* Highlight color on hover */
+.low-contrast nav a:hover {
+    background-color: #852d10; /* Highlight color on hover */
     color: #1c1c1c; /* Change text color on hover */
 }
 
-.container {
+.low-contrast h1 {
+    color: #b56d00;
+}
+
+.low-contrast h2 {
+    color: #b56d00;
+}
+
+.low-contrast p {
+    color: #b56d00;
+}
+
+.low-contrast label {
+    color: #b56d00;
+}
+
+.low-contrast .container {
     text-align: center; /* Center text in the container */
 }
 
-.add-au {
+.low-contrast .add-au {
     margin-bottom: 20px; /* Space below the add AU section */
 }
 
-.au-box {
+.low-contrast .au-box {
     background-color: #333; /* Dark background for the AU box */
-    border: 2px solid #ff4000; /* Orange border for contrast */
+    border: 2px solid #852d10; /* Dark red border for contrast */
     border-radius: 10px; /* Rounded corners */
     padding: 20px; /* Inner spacing */
     margin: 0 auto; /* Centering the box */
@@ -47,18 +63,18 @@ nav a:hover {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle shadow for depth */
 }
 
-.au-list {
+.low-contrast .au-list {
     list-style-type: none; /* Remove bullet points from list */
     padding: 0; /* Remove padding */
 }
 
-.au-item {
+.low-contrast .au-item {
     margin: 10px 0; /* Space between AU items */
 }
 
-.au-button, .edit-button, .delete-button {
+.low-contrast .au-button, .low-contrast .edit-button, .low-contrast .delete-button {
     background-color: #401306; /* Dark background for AU buttons */
-    color: #ff4000; /* Orange text color */
+    color: #852d10; /* Dark red text color */
     border: none; /* Remove border */
     padding: 10px; /* Inner padding */
     margin: 0 5px; /* Margin between buttons */
@@ -67,38 +83,38 @@ nav a:hover {
     transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
-.au-button:hover, .edit-button:hover, .delete-button:hover {
-    background-color: #ff4000; /* Change to highlight color on hover */
+.low-contrast .au-button:hover,.low-contrast .edit-button:hover,.low-contrast .delete-button:hover {
+    background-color: #852d10; /* Change to highlight color on hover */
 }
 
-.edit-button {
+.low-contrast .edit-button {
     margin-left: 10px; /* Extra space for edit button */
 }
 
-.delete-button {
+.low-contrast .delete-button {
     margin-left: 5px; /* Extra space for delete button */
 }
 
-input[type="text"] {
+.low-contrast input[type="text"] {
     padding: 10px; /* Padding inside the input */
     margin-right: 10px; /* Space between input and button */
-    border: 2px solid #ffbb00; /* Yellow border */
+    border: 2px solid #b56d00; /* Orange border */
     border-radius: 5px; /* Rounded corners */
     background-color: #333; /* Dark background */
-    color: #ffbb00; /* Yellow text color */
+    color: #b56d00; /* Orange text color */
     font-size: 16px; /* Font size */
     width: 250px; /* Width of the input */
     transition: border-color 0.3s; /* Smooth border color transition */
 }
 
-input[type="text"]:focus {
-    border-color: #ff4000; /* Change border color on focus */
+.low-contrast input[type="text"]:focus {
+    border-color: #852d10; /* Change border color on focus */
     outline: none; /* Remove default outline */
 }
 
-button {
+.low-contrast button {
     background-color: #401306; /* Dark background for button */
-    color: #ff4000; /* Orange text color */
+    color: #852d10; /* Dark red text color */
     border: none; /* Remove border */
     padding: 10px 15px; /* Padding for button */
     cursor: pointer; /* Pointer cursor on hover */
@@ -108,79 +124,81 @@ button {
     margin-top: 20px;
 }
 
-button:hover {
-    background-color: #ff4000; /* Highlight color on hover */
+.low-contrast button:hover {
+    background-color: #852d10; /* Highlight color on hover */
     color: #1c1c1c; /* Change text color on hover */
 }
-.appearance-box {
-    border: 2px solid #ff4000; /* Border color */
+
+.low-contrast .appearance-box {
+    border: 2px solid #852d10; /* Border color */
     border-radius: 8px; /* Rounded corners */
     padding: 15px; /* Padding inside the box */
     margin-top: 20px; /* Space above the box */
     background-color: #1c1c1c; /* Background color */
-    color: #ffbb00; /* Text color */
+    color: #b56d00; /* Text color */
 }
 
-.appearance-box p {
+.low-contrast .appearance-box p {
     margin: 5px 0; /* Space between paragraphs */
 }
 
-.color-square {
+.low-contrast .color-square {
     display: inline-block;
     width: 20px;
     height: 20px;
     margin-left: 5px;
-    border: 1px solid #fff; /* Optional border for color square */
+    border: 1px solid black; /* Optional border for color square */
 }
 
-input[type="text"],
-input[type="number"],
-textarea {
+.low-contrast input[type="text"],
+.low-contrast input[type="number"],
+.low-contrast textarea {
     margin-top: 5px;
     margin-bottom: 15px;
     width: calc(100% - 22px); /* Adjusted width for better fit */
     padding: 8px;
-    border: 1px solid #ff4000;
+    border: 1px solid #852d10;
     border-radius: 4px;
     background-color: #1c1c1c;
-    color: #ffbb00;
+    color: #b56d00;
 }
 
-button {
-    background-color: #ff4000;
-    color: #fff;
+.low-contrast button {
+    background-color: #852d10;
+    color: black
+    ;
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #ffbb00;
+.low-contrast button:hover {
+    background-color: #b56d00;
 }
 
-nav a {
+.low-contrast nav a {
     margin: 0 15px;
-    color: #ffbb00;
+    color: #b56d00;
     text-decoration: none;
 }
 
-nav a:hover {
+.low-contrast nav a:hover {
     text-decoration: underline;
 }
 
-.timeline-event {
+.low-contrast .timeline-event {
     padding: 10px;
-    border: 1px solid #ff4000;
+    border: 1px solid #852d10;
     border-radius: 5px;
     background-color: #0d0d0d;
-    color: #ffbb00;
+    color: #b56d00;
     position: relative;
 }
 
-.edit-button, .delete-button {
+.low-contrast .edit-button,.low-contrast .delete-button {
     background-color: #401306;
-    color: #ff4000;
+    color: #852d10;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -190,28 +208,27 @@ nav a:hover {
     margin: 5px;
 }
 
-.edit-button:hover, .delete-button:hover {
-    background-color: #ff4000;
+.low-contrast.edit-button:hover,.low-contrast.delete-button:hover {
+    background-color: #852d10;
     color: #1c1c1c;
 }
 
-.editing-form {
+.low-contrast .editing-form {
     display: none; /* Hidden by default */
     margin-top: 10px;
 }
 
-.editing-form input, .editing-form textarea {
+.low-contrast .editing-form input,.low-contrast .editing-form textarea {
     margin-bottom: 10px;
     width: calc(100% - 20px); /* Adjust width */
     padding: 5px;
-    border: 1px solid #ffbb00;
+    border: 1px solid #b56d00;
     border-radius: 5px;
     background-color: #1c1c1c;
-    color: #ffbb00;
+    color: #b56d00;
 }
 
-
-.image-center {
+.low-contrast .image-center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,24 +236,26 @@ nav a:hover {
 }
 
 /* Style for appearance details image */
-.appearance-box img {
+.low-contrast .appearance-box img {
     display: block;
     margin: 10px auto; /* Centering image inside appearance box */
     max-width: 200px;
 }
+
 /* Style for the color picker input */
-input[type="color"] {
+.low-contrast input[type="color"] {
     width: 40px; /* Set size for color picker */
     height: 40px;
     padding: 0; /* Remove padding for a compact look */
-    border: 2px solid #ff4000; /* Match border with other elements */
+    border: 2px solid #852d10; /* Match border with other elements */
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Show pointer on hover */
     margin-left: 10px; /* Space between picker and name */
 }
-.move-up-button, .move-down-button {
+
+.low-contrast .move-up-button, .low-contrast .move-down-button {
     background-color: #401306;
-    color: #ff4000;
+    color: #852d10;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -246,8 +265,7 @@ input[type="color"] {
     margin: 5px;
 }
 
-.move-up-button:hover, .move-down-button:hover {
-    background-color: #ff4000;
+.low-contrast .move-up-button:hover,.low-contrast .move-down-button:hover {
+    background-color: #852d10;
     color: #1c1c1c;
 }
-

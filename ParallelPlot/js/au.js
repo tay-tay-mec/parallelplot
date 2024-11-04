@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const auTitle = localStorage.getItem('currentAU'); // Get the current AU's name
-    document.getElementById('auTitle').textContent = auTitle; // Display the AU name
-    loadHumans(); // Load humans for the AU
-    loadTimeline(); // Load timeline events
+    initializePage();
 });
+
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('lowContrastToggle');
 
@@ -21,67 +19,95 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function initializePage() {
+    const auTitleElement = document.getElementById('auTitle');
+    const toggleButton = document.getElementById('lowContrastToggle');
+    
+    // Display the AU name if it exists in localStorage
+    const auTitle = localStorage.getItem('currentAU');
+    if (auTitleElement && auTitle) {
+        auTitleElement.textContent = auTitle;
+    }
+
+    // Load humans and timeline events for the AU
+    loadHumans();
+    loadTimelineEvents();  // Updated to load saved events
+
+
+    }
+
+
+// HUMAN FUNCTIONS
+
 function loadHumans() {
     const humanList = document.getElementById('humanList');
+    if (!humanList) return;
+
     humanList.innerHTML = ''; // Clear the list before loading
 
     const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU'); // Get current AU from local storage
-    const currentHumans = humans[currentAU] || []; // Get humans for the current AU
+    const currentAU = localStorage.getItem('currentAU');
+    const currentHumans = humans[currentAU] || [];
 
     currentHumans.forEach(human => {
-        addHumanToList(human.name, human.color || '#FFFFFF'); // Load with default color if not set
+        addHumanToList(human.name, human.color || '#FFFFFF');
     });
 }
 
+// Add a new human and save to local storage
 function addHuman() {
     const humanName = document.getElementById('humanName').value;
-    if (!humanName) return; // Don't add if input is empty
+    if (!humanName) return;
 
     const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU'); // Get current AU from local storage
+    const currentAU = localStorage.getItem('currentAU');
 
-    // Initialize AU if it doesn't exist
     if (!humans[currentAU]) {
         humans[currentAU] = [];
     }
 
-    // Add human only if not already in list
     if (!humans[currentAU].some(human => human.name === humanName)) {
-        humans[currentAU].push({ name: humanName, color: '#FFFFFF' }); // Default color is white
-        localStorage.setItem('humans', JSON.stringify(humans)); // Save updated humans list
-        addHumanToList(humanName, '#FFFFFF'); // Add to UI with default color
+        humans[currentAU].push({ name: humanName, color: '#FFFFFF' });
+        localStorage.setItem('humans', JSON.stringify(humans));
+        addHumanToList(humanName, '#FFFFFF');
     }
-    
-    document.getElementById('humanName').value = ''; // Clear input
+
+    document.getElementById('humanName').value = '';
 }
 
+// Display a human in the list with options
 function addHumanToList(humanName, color) {
     const humanList = document.getElementById('humanList');
+    if (!humanList) return;
+
     const li = document.createElement('li');
     li.className = 'human-item';
 
-    // Create button for the human with background color
     const humanButton = document.createElement('button');
     humanButton.textContent = humanName;
     humanButton.className = 'human-button';
     humanButton.style.backgroundColor = color;
     humanButton.onclick = () => {
-        localStorage.setItem('currentHuman', humanName); // Store current human's name
-        window.location.href = '../html/human.html'; // Redirect to human info page
+        localStorage.setItem('currentHuman', humanName);
+        window.location.href = '../html/human.html';
     };
 
-    // Create color picker for the human
     const colorPicker = document.createElement('input');
     colorPicker.type = 'color';
     colorPicker.value = color;
     colorPicker.className = 'color-picker';
     colorPicker.oninput = () => {
-        applyHumanColor(humanName, colorPicker.value); // Update color on input change
-        humanButton.style.backgroundColor = colorPicker.value; // Update the button's background color
+        applyHumanColor(humanName, colorPicker.value);
+        humanButton.style.backgroundColor = colorPicker.value;
     };
 
-    // Create Delete button
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.className = 'edit-button';
+    editButton.onclick = () => {
+        editHuman(humanName);
+    };
+
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.className = 'delete-button';
@@ -90,86 +116,143 @@ function addHumanToList(humanName, color) {
     };
 
     li.appendChild(humanButton);
-    li.appendChild(colorPicker); // Append color picker next to the human name
+    li.appendChild(colorPicker);
+    li.appendChild(editButton);
     li.appendChild(deleteButton);
     humanList.appendChild(li);
 }
 
+// Apply and save color for human
 function applyHumanColor(humanName, color) {
     const humans = JSON.parse(localStorage.getItem('humans')) || {};
     const currentAU = localStorage.getItem('currentAU');
-
+    
     if (humans[currentAU]) {
-        humans[currentAU] = humans[currentAU].map(human => {
-            if (human.name === humanName) {
-                return { name: human.name, color: color }; // Update color
-            }
-            return human;
-        });
-        localStorage.setItem('humans', JSON.stringify(humans)); // Save updated humans list
+        humans[currentAU] = humans[currentAU].map(human => 
+            human.name === humanName ? { ...human, color } : human
+        );
+        localStorage.setItem('humans', JSON.stringify(humans));
     }
 }
 
+// Edit human's name
+function editHuman(oldName) {
+    const newName = prompt("Enter new name:", oldName);
+    if (newName && newName !== oldName) {
+        const humans = JSON.parse(localStorage.getItem('humans')) || {};
+        const currentAU = localStorage.getItem('currentAU');
+
+        if (humans[currentAU]) {
+            humans[currentAU] = humans[currentAU].map(human => 
+                human.name === oldName ? { ...human, name: newName } : human
+            );
+            localStorage.setItem('humans', JSON.stringify(humans));
+            loadHumans(); // Reload the humans list to reflect the updated name
+        }
+    }
+}
+
+// Delete a human
 function deleteHuman(humanName) {
     const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU'); // Get current AU from local storage
-
-    // Remove human from current AU
+    const currentAU = localStorage.getItem('currentAU');
+    
     if (humans[currentAU]) {
         humans[currentAU] = humans[currentAU].filter(human => human.name !== humanName);
-        localStorage.setItem('humans', JSON.stringify(humans)); // Save updated humans list
-        loadHumans(); // Refresh the list
+        localStorage.setItem('humans', JSON.stringify(humans));
+        loadHumans();
     }
 }
 
-// Timeline Functions
-function loadTimeline() {
-    const timelineDisplay = document.getElementById('timelineDisplay');
-    timelineDisplay.innerHTML = ''; // Clear previous timeline events
+// TIMELINE FUNCTIONS
 
-    const timeline = JSON.parse(localStorage.getItem('timeline')) || {};
-    const currentAU = localStorage.getItem('currentAU');
-    const events = timeline[currentAU] || [];
+let timelineEvents = []; // Store events for the current AU in memory
 
-    events.forEach(event => {
-        addTimelineEventToDisplay(event.date, event.description);
+function loadTimelineEvents() {
+    const storedEvents = JSON.parse(localStorage.getItem("timelineEvents")) || {};
+    const currentAU = localStorage.getItem("currentAU");
+    timelineEvents = storedEvents[currentAU] || [];
+    renderTimeline();
+}
+
+function renderTimeline() {
+    const timelineBox = document.getElementById("timeline-box");
+    if (!timelineBox) return;
+
+    timelineBox.innerHTML = ""; // Clear the timeline display
+
+    timelineEvents.forEach((event, index) => {
+        const eventElement = document.createElement("div");
+        eventElement.className = "timeline-event";
+        eventElement.innerHTML = `
+            <h3>${event.title}</h3>
+            <p>${event.description}</p>
+            <button onclick="editEvent(${event.id})">Edit</button>
+            <button onclick="deleteEvent(${event.id})">Delete</button>
+            <button onclick="moveEventUp(${index})">Move Up</button>
+            <button onclick="moveEventDown(${index})">Move Down</button>
+        `;
+        timelineBox.appendChild(eventElement);
     });
+    saveTimelineEvents();
 }
 
+// Add a new timeline event
 function addTimelineEvent() {
-    const eventDate = document.getElementById('eventDate').value;
-    const eventDescription = document.getElementById('eventDescription').value;
-    if (!eventDate || !eventDescription) return; // Only add if both date and description are filled
+    const title = document.getElementById("event-title").value;
+    const description = document.getElementById("event-description").value;
 
-    const timeline = JSON.parse(localStorage.getItem('timeline')) || {};
-    const currentAU = localStorage.getItem('currentAU');
+    if (title && description) {
+        const event = { title, description, id: Date.now() };
+        timelineEvents.push(event);
+        renderTimeline();
 
-    if (!timeline[currentAU]) {
-        timeline[currentAU] = [];
+        document.getElementById("event-title").value = ""; // Clear input
+        document.getElementById("event-description").value = "";
     }
-
-    timeline[currentAU].push({ date: eventDate, description: eventDescription });
-    localStorage.setItem('timeline', JSON.stringify(timeline)); // Save updated timeline
-
-    addTimelineEventToDisplay(eventDate, eventDescription); // Add to display
-    document.getElementById('eventDate').value = ''; // Clear input fields
-    document.getElementById('eventDescription').value = '';
 }
 
-function addTimelineEventToDisplay(date, description) {
-    const timelineDisplay = document.getElementById('timelineDisplay');
-    const eventDiv = document.createElement('div');
-    eventDiv.className = 'timeline-event';
-
-    const dateDiv = document.createElement('div');
-    dateDiv.className = 'event-date';
-    dateDiv.textContent = date;
-
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'event-description';
-    descriptionDiv.textContent = description;
-
-    eventDiv.appendChild(dateDiv);
-    eventDiv.appendChild(descriptionDiv);
-    timelineDisplay.appendChild(eventDiv);
+// Save timeline events to localStorage
+function saveTimelineEvents() {
+    const currentAU = localStorage.getItem("currentAU");
+    const storedEvents = JSON.parse(localStorage.getItem("timelineEvents")) || {};
+    storedEvents[currentAU] = timelineEvents;
+    localStorage.setItem("timelineEvents", JSON.stringify(storedEvents));
 }
+
+// Edit a timeline event
+function editEvent(id) {
+    const event = timelineEvents.find(event => event.id === id);
+    if (event) {
+        const newTitle = prompt("Edit title:", event.title);
+        const newDescription = prompt("Edit description:", event.description);
+
+        if (newTitle !== null && newDescription !== null) {
+            event.title = newTitle;
+            event.description = newDescription;
+            renderTimeline();
+        }
+    }
+}
+
+// Delete a timeline event
+function deleteEvent(id) {
+    timelineEvents = timelineEvents.filter(event => event.id !== id);
+    renderTimeline();
+}
+
+// Move an event up in the list
+function moveEventUp(index) {
+    if (index > 0) {
+        [timelineEvents[index - 1], timelineEvents[index]] = [timelineEvents[index], timelineEvents[index - 1]];
+        renderTimeline();
+    }
+}
+
+function moveEventDown(index) {
+    if (index < timelineEvents.length - 1) {
+        [timelineEvents[index + 1], timelineEvents[index]] = [timelineEvents[index], timelineEvents[index + 1]];
+        renderTimeline();
+    }
+}
+

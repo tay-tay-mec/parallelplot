@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AU Page</title>
     <link rel="stylesheet" href="../css/styles.css"> <!-- Link to CSS file -->
+    <link rel="stylesheet" href="../css/low.css"> <!-- Link to CSS file -->
 </head>
 <body>
     <header>
@@ -13,8 +14,6 @@
 
     <nav>
         <a href="../html/index.html">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
     </nav>
 
     <div class="container">
@@ -31,20 +30,14 @@
     <div class="timeline-section">
         <h2>Timeline</h2>
     
-        <!-- Form to add timeline events -->
         <div class="timeline-form">
-            <label for="eventDate">Date:</label>
-            <input type="date" id="eventDate">
-            
-            <label for="eventDescription">Description:</label>
-            <textarea id="eventDescription" placeholder="Event description..."></textarea>
-            
+            <input type="text" id="event-title" placeholder="Event Title">
+            <textarea id="event-description" placeholder="Event Description"></textarea>
             <button onclick="addTimelineEvent()">Add Event</button>
         </div>
     
-        <!-- Area to display saved timeline events -->
-        <div id="timelineDisplay" class="timeline-box">
-            <!-- Timeline events will appear here -->
+        <div id="timeline-box" class="timeline-box">
+            <!-- Timeline events will be added here dynamically -->
         </div>
     </div>
     
