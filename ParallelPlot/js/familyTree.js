@@ -1,93 +1,236 @@
-// script.js
-const familyTreeDiv = document.getElementById('family-tree');
-const addMemberButton = document.getElementById('add-member');
-
-let familyMembers = [];
-
-// Load family members from localStorage when the page is loaded
-window.onload = () => {
-    const storedMembers = localStorage.getItem('familyMembers');
-    if (storedMembers) {
-        familyMembers = JSON.parse(storedMembers);
-        displayFamilyTree();
+document.addEventListener('DOMContentLoaded', () => {
+    const familyTitle = document.getElementById('familyTitle');
+    const familyName = localStorage.getItem('currentFamily');
+    if (familyTitle && familyName) {
+        familyTitle.textContent = `Family Tree: ${familyName}`;
     }
-        // Check if low contrast mode was previously enabled
-        if (localStorage.getItem('lowContrast') === 'true') {
-            document.body.classList.add('low-contrast');
-        }
-    
-        toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('low-contrast');
-            
-            // Save the user's preference in local storage
-            const isLowContrast = document.body.classList.contains('low-contrast');
-            localStorage.setItem('lowContrast', isLowContrast);
-        });
-};
+    loadFamilyMembers();
 
-// Function to add a new family member
-addMemberButton.addEventListener('click', () => {
-    const name = prompt("Enter the family member's name:");
-    const relation = prompt("Enter their relation to you:");
-
-    if (name && relation) {
-        const newMember = { name, relation, position: { left: 50, top: 50 } }; // Set default position
-        familyMembers.push(newMember);
-        saveFamilyMembers(); // Save to localStorage
-        displayFamilyTree();
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('lowContrast') === 'true') {
+        document.body.classList.add('low-contrast');
     }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('low-contrast');
+        
+        // Save the user's preference in local storage
+        const isLowContrast = document.body.classList.contains('low-contrast');
+        localStorage.setItem('lowContrast', isLowContrast);
+    });
+
 });
 
-// Function to display the family tree
-function displayFamilyTree() {
-    familyTreeDiv.innerHTML = ''; // Clear the previous tree
-    familyMembers.forEach((member, index) => {
-        const memberDiv = document.createElement('div');
-        memberDiv.className = 'member';
-        memberDiv.setAttribute('draggable', true);
-        memberDiv.innerHTML = `<strong>${member.name}</strong><br>${member.relation}`;
 
-        // Set the position of each member based on saved position
-        memberDiv.style.left = `${member.position.left}px`;
-        memberDiv.style.top = `${member.position.top}px`;
 
-        // Event listeners for drag-and-drop
-        memberDiv.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', index); // Store the index of the dragged member
-            setTimeout(() => {
-                e.target.style.opacity = '0.5'; // Reduce opacity while dragging
-            }, 0);
-        });
+// Function to load family members from localStorage and display them
+function loadFamilyMembers() {
+    const familyTreeList = document.getElementById('familyTreeList');
+    familyTreeList.innerHTML = '';
 
-        memberDiv.addEventListener('dragend', (e) => {
-            e.target.style.opacity = ''; // Reset opacity after dragging
-        });
+    const familyName = localStorage.getItem('currentFamily');
+    const familyData = JSON.parse(localStorage.getItem(`familyData_${familyName}`)) || [];
 
-        memberDiv.addEventListener('dragover', (e) => {
-            e.preventDefault(); // Allow drop
-        });
+    familyData.forEach((member, index) => {
+        const memberElement = document.createElement('li');
+        memberElement.classList.add('family-member');
 
-        memberDiv.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const draggedIndex = e.dataTransfer.getData('text/plain');
+        // Display member name
+        const memberNameElement = document.createElement('span');
+        memberNameElement.textContent = member.name;
+        memberElement.appendChild(memberNameElement);
 
-            // Get the drop position relative to the family tree
-            const dropX = e.clientX - familyTreeDiv.offsetLeft;
-            const dropY = e.clientY - familyTreeDiv.offsetTop;
+        // Check if there's a partner and display a line if there is one
+        if (member.partner) {
+            const lineElement = document.createElement('span');
+            lineElement.classList.add('partner-line');
+            lineElement.textContent = ' ─ '; // Line representing the partner relationship
+            memberElement.appendChild(lineElement);
 
-            // Update position of dragged member
-            const draggedMember = familyMembers[draggedIndex];
-            draggedMember.position = { left: dropX, top: dropY };
+            const partnerElement = document.createElement('span');
+            partnerElement.textContent = member.partner;
+            memberElement.appendChild(partnerElement);
+        }
 
-            saveFamilyMembers(); // Save updated positions to localStorage
-            displayFamilyTree(); // Re-display the tree to reflect new positions
-        });
+        // Add click event to show/hide dropdown menu
+        memberElement.onclick = () => toggleDropdown(memberElement, index);
 
-        familyTreeDiv.appendChild(memberDiv);
+        // Create a dropdown menu for each member
+        const dropdownMenu = document.createElement('div');
+        dropdownMenu.classList.add('dropdown-menu');
+        dropdownMenu.style.display = 'none';
+
+        // Add "Add Partner" option to the dropdown menu
+        const addPartnerOption = document.createElement('button');
+        addPartnerOption.textContent = 'Add Partner';
+        addPartnerOption.onclick = (e) => {
+            e.stopPropagation();
+            addPartner(index);
+        };
+
+        // Add "Child Of" option to the dropdown menu
+        const childOfOption = document.createElement('button');
+        childOfOption.textContent = 'Child Of';
+        childOfOption.onclick = (e) => {
+            e.stopPropagation();
+            showParentSelection(index);
+        };
+
+        const editOption = document.createElement('button');
+        editOption.textContent = 'Edit Name';
+        editOption.onclick = (e) => {
+            e.stopPropagation();
+            const newName = prompt('Enter new name:', member.name);
+            if (newName) {
+                updateFamilyMemberName(index, newName);
+            }
+        };
+
+        const deleteOption = document.createElement('button');
+        deleteOption.textContent = 'Delete';
+        deleteOption.onclick = (e) => {
+            e.stopPropagation();
+            deleteFamilyMember(index);
+        };
+
+        // Append options to dropdown menu
+        dropdownMenu.appendChild(addPartnerOption);
+        dropdownMenu.appendChild(childOfOption);
+        dropdownMenu.appendChild(editOption);
+        dropdownMenu.appendChild(deleteOption);
+
+        // Append dropdown menu to the member element
+        memberElement.appendChild(dropdownMenu);
+        familyTreeList.appendChild(memberElement);
+
+        // Display children if they have any
+        if (member.children && member.children.length > 0) {
+            const childList = document.createElement('ul');
+            member.children.forEach(childName => {
+                const childItem = document.createElement('li');
+                childItem.textContent = childName;
+                childList.appendChild(childItem);
+            });
+            memberElement.appendChild(childList);
+        }
     });
 }
 
-// Function to save family members to localStorage
-function saveFamilyMembers() {
-    localStorage.setItem('familyMembers', JSON.stringify(familyMembers));
+// Function to toggle dropdown menu visibility
+function toggleDropdown(memberElement, index) {
+    const dropdownMenu = memberElement.querySelector('.dropdown-menu');
+    dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+}
+
+// Function to add a family member to the current family tree
+function addFamilyMember() {
+    const memberName = document.getElementById('memberName').value;
+    if (!memberName) return;  // Prevent adding empty names
+
+    const familyName = localStorage.getItem('currentFamily');
+    const familyDataKey = `familyData_${familyName}`;
+    const familyData = JSON.parse(localStorage.getItem(familyDataKey)) || [];
+
+    // Add the new member to the family data
+    familyData.push({ name: memberName, partner: null, children: [] });
+    localStorage.setItem(familyDataKey, JSON.stringify(familyData));
+
+    // Clear the input and reload the family members list
+    document.getElementById('memberName').value = '';
+    loadFamilyMembers();
+}
+
+// Function to add a partner to a family member
+function addPartner(index) {
+    const partnerName = prompt('Enter partner name:');
+    if (!partnerName) return;
+
+    const familyName = localStorage.getItem('currentFamily');
+    const familyDataKey = `familyData_${familyName}`;
+    const familyData = JSON.parse(localStorage.getItem(familyDataKey)) || [];
+
+    // Update the partner name for the selected member
+    familyData[index].partner = partnerName;
+    localStorage.setItem(familyDataKey, JSON.stringify(familyData));
+
+    // Reload the family members list
+    loadFamilyMembers();
+}
+
+// Function to display parent selection dropdown and add parent relationship
+function showParentSelection(childIndex) {
+    const familyName = localStorage.getItem('currentFamily');
+    const familyDataKey = `familyData_${familyName}`;
+    const familyData = JSON.parse(localStorage.getItem(familyDataKey)) || [];
+
+    // Create a dropdown to select an existing member as the parent
+    const dropdown = document.createElement('select');
+    dropdown.innerHTML = '<option value="">Select Parent</option>';
+    familyData.forEach((member, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = member.name;
+        dropdown.appendChild(option);
+    });
+
+    // Append a button to confirm parent selection
+    const confirmButton = document.createElement('button');
+    confirmButton.textContent = 'Confirm Parent';
+    confirmButton.onclick = () => {
+        const parentIndex = dropdown.value;
+        if (parentIndex !== "") {
+            addChildRelationship(childIndex, parentIndex);
+        }
+        dropdown.remove();
+        confirmButton.remove();
+    };
+
+    // Display the dropdown and confirm button in the family tree list
+    document.getElementById('familyTreeList').appendChild(dropdown);
+    document.getElementById('familyTreeList').appendChild(confirmButton);
+}
+
+// Function to add a parent-child relationship
+function addChildRelationship(childIndex, parentIndex) {
+    const familyName = localStorage.getItem('currentFamily');
+    const familyDataKey = `familyData_${familyName}`;
+    const familyData = JSON.parse(localStorage.getItem(familyDataKey)) || [];
+
+    const parentName = familyData[parentIndex].name;
+
+    // Add the child to the parent's children list
+    if (!familyData[parentIndex].children.includes(familyData[childIndex].name)) {
+        familyData[parentIndex].children.push(familyData[childIndex].name);
+    }
+
+    localStorage.setItem(familyDataKey, JSON.stringify(familyData));
+    loadFamilyMembers();
+}
+
+// Function to delete a family member by index
+function deleteFamilyMember(index) {
+    const familyName = localStorage.getItem('currentFamily');
+    const familyDataKey = `familyData_${familyName}`;
+    const familyData = JSON.parse(localStorage.getItem(familyDataKey)) || [];
+
+    // Remove the member at the specified index
+    familyData.splice(index, 1);
+    localStorage.setItem(familyDataKey, JSON.stringify(familyData));
+
+    // Reload the family members list
+    loadFamilyMembers();
+}
+
+// Function to update a family member's name
+function updateFamilyMemberName(index, newName) {
+    const familyName = localStorage.getItem('currentFamily');
+    const familyDataKey = `familyData_${familyName}`;
+    const familyData = JSON.parse(localStorage.getItem(familyDataKey)) || [];
+
+    // Update the name
+    familyData[index].name = newName;
+    localStorage.setItem(familyDataKey, JSON.stringify(familyData));
+
+    // Reload the family members list
+    loadFamilyMembers();
 }

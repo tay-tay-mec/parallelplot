@@ -8,19 +8,28 @@
     <link rel="stylesheet" href="../css/low.css">
 </head>
 <body>
+    <header>
+        <h1 id="familyTitle"></h1>
+    </header>
 
     <nav>
         <a href="../html/index.html">Home</a>
         <a href="../html/au.html">Back to AU</a>
     </nav>
 
-    <header>
-        <h1>Family Tree</h1>
-    </header>
-        <main>
-            <div id="family-tree"></div>
-            <button id="add-member">Add Family Member</button>
-        </main>
+    <div class="container">
+        <h2>Add Family Member</h2>
+        <input type="text" id="memberName" placeholder="Enter Member Name">
+        <button onclick="addFamilyMember()">Add Member</button>
+
+        <p>For further options click on the members</p>
+
+        <h2>Family Tree</h2>
+        <ul id="familyTreeList">
+            <!-- Family members and relationships will be displayed here -->
+        </ul>
+    </div>
+
     <script src="../js/familyTree.js"></script>
 </body>
 </html>

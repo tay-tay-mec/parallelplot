@@ -265,3 +265,46 @@ input[type="color"] {
     margin: 5px;
     text-align: center;
 }
+
+/* Basic styling for the family tree list */
+.family-member {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(253, 186, 0);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-menu button:hover {
+    background-color: #ff7300;
+}
+amily-member {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.partner-line {
+    margin: 0 5px; /* Adjust spacing around the line */
+    font-weight: bold; /* Make the line stand out */
+}
