@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHumanDetails(humanName); // Load additional details about the human
     loadAppearanceDetails(humanName); // Load appearance details
     loadBackstoryDetails(humanName); // Load backstory details
+        loadAPPEARANCEs(); // Load existing AUs on page load
 });
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('lowContrastToggle');
 
@@ -22,175 +25,324 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function loadHumanDetails(humanName) {
-    const detailsDiv = document.getElementById('humanDetails');
-    detailsDiv.innerHTML = ''; // Clear previous content
-    detailsDiv.innerHTML = `
-        <p>Name: ${humanName}</p>
-        <p>Additional info about ${humanName} can go here.</p>
-        <button onclick="deleteHuman('${humanName}')">Delete Human</button>
-    `;
-}
 
-function deleteHuman(humanName) {
-    const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU'); // Get current AU from local storage
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('highContrastToggle');
 
-    if (humans[currentAU]) {
-        const updatedHumans = humans[currentAU].filter(h => h.name !== humanName);
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('highContrast') === 'true') {
+        document.body.classList.add('high-contrast');
+    }
 
-        if (updatedHumans.length > 0) {
-            humans[currentAU] = updatedHumans;
-        } else {
-            delete humans[currentAU];
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('high-contrast');
+        
+        // Save the user's preference in local storage
+        const ishighContrast = document.body.classList.contains('high-contrast');
+        localStorage.setItem('highContrast', ishighContrast);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('LightToggle');
+
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('Light') === 'true') {
+        document.body.classList.add('light');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        
+        // Save the user's preference in local storage
+        const isLight = document.body.classList.contains('light');
+        localStorage.setItem('Light', isLight);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('PurpleToggle');
+
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('Purple') === 'true') {
+        document.body.classList.add('purple');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('purple');
+        
+        // Save the user's preference in local storage
+        const isPurple = document.body.classList.contains('purple');
+        localStorage.setItem('Purple', isPurple);
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const appearanceForm = document.getElementById("addAppearanceForm");
+    const appearanceNameInput = document.getElementById("appearanceNameInput");
+    const imageInput = document.getElementById("imageInput");
+    const appearanceList = document.getElementById("appearanceList");
+
+    // Load existing appearances on page load
+    loadAppearances();
+
+    // Add appearance form submission handler
+    appearanceForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const appearanceName = appearanceNameInput.value.trim();
+
+        if (!appearanceName) {
+            alert("Please enter a valid appearance name.");
+            return;
         }
 
-        localStorage.setItem('humans', JSON.stringify(humans));
-        alert(`${humanName} has been deleted!`);
+        // Process uploaded images
+        const imageFiles = Array.from(imageInput.files);
+        const imageBase64 = await Promise.all(imageFiles.map(fileToBase64));
 
-        window.location.href = '../html/au.html'; 
-    }
-}
+        // Save appearance with images
+        saveAppearance({ name: appearanceName, images: imageBase64 });
+        addAppearanceToList({ name: appearanceName, images: imageBase64 });
 
-// Preview image function
-function previewImage(event) {
-    const imagePreview = document.getElementById('imagePreview');
-    imagePreview.src = URL.createObjectURL(event.target.files[0]);
-    imagePreview.style.display = 'block';
-}
+        // Clear input fields
+        appearanceNameInput.value = "";
+        imageInput.value = "";
+    });
 
-// Save appearance details
-function saveAppearance() {
-    const appearance = {
-        skinColor: document.getElementById('skinColor').value,
-        LeyeColor: document.getElementById('LeyeColor').value,
-        ReyeColor: document.getElementById('ReyeColor').value,
-        hairColor: document.getElementById('hairColor').value,
-        hairLength: document.getElementById('hairLength').value,
-        hairStructure: document.getElementById('hairStructure').value,
-        hairStyle: document.getElementById('hairStyle').value,
-        clothingStyle: document.getElementById('clothingStyle').value,
-        birthYear: document.getElementById('birthYear').value,
-        deathYear: document.getElementById('deathYear').value,
-        extras: document.getElementById('extras').value,
-        imageSrc: document.getElementById('imagePreview').src
-    };
-
-    const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU');
-    const currentHuman = localStorage.getItem('currentHuman');
-
-    if (!humans[currentAU]) {
-        humans[currentAU] = [];
+    // Load appearances from localStorage
+    function loadAppearances() {
+        const appearances = JSON.parse(localStorage.getItem("appearanceList")) || [];
+        appearances.forEach((appearance) => {
+            addAppearanceToList(appearance);
+        });
     }
 
-    const humanIndex = humans[currentAU].findIndex(h => h.name === currentHuman);
-    if (humanIndex === -1) {
-        humans[currentAU].push({ name: currentHuman, appearance });
-    } else {
-        humans[currentAU][humanIndex].appearance = appearance;
+    // Save appearance to localStorage
+    function saveAppearance(appearance) {
+        const appearances = JSON.parse(localStorage.getItem("appearanceList")) || [];
+        appearances.push(appearance);
+        localStorage.setItem("appearanceList", JSON.stringify(appearances));
     }
 
-    localStorage.setItem('humans', JSON.stringify(humans));
-    alert('Appearance saved successfully!');
+    // Add an appearance to the DOM list
+    function addAppearanceToList(appearance) {
+        const li = document.createElement("li");
+        li.className = "appearance-item";
 
-    loadAppearanceDetails(currentHuman);
-}
+        const nameElement = document.createElement("span");
+        nameElement.textContent = appearance.name;
+        li.appendChild(nameElement);
 
-// Load appearance details
-function loadAppearanceDetails(humanName) {
-    const appearanceDiv = document.getElementById('appearanceDetails');
-    const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU');
-
-    appearanceDiv.innerHTML = '';
-    if (humans[currentAU]) {
-        const human = humans[currentAU].find(h => h.name === humanName);
-        if (human && human.appearance) {
-            const appearance = human.appearance;
-            appearanceDiv.innerHTML = `
-                <div>
-                    <p><strong>Skin Color/Main Color:</strong> <span style="background-color: ${appearance.skinColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.skinColor})</p>
-                    <p><strong>Left Eye Color:</strong> <span style="background-color: ${appearance.LeyeColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.LeyeColor})</p>
-                    <p><strong>Right Eye Color:</strong> <span style="background-color: ${appearance.ReyeColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.ReyeColor})</p>
-                    <p><strong>Hair Color/Secondary Color:</strong> <span style="background-color: ${appearance.hairColor}; width: 20px; height: 20px; display: inline-block;"></span> (${appearance.hairColor})</p>
-                    <p><strong>Hair Length/Texture:</strong> ${appearance.hairLength}</p>
-                    <p><strong>Hair Structure/Material:</strong> ${appearance.hairStructure}</p>
-                    <p><strong>Hair Style/Creator:</strong> ${appearance.hairStyle}</p>
-                    <p><strong>Clothing Style:</strong> ${appearance.clothingStyle}</p>
-                    <p><strong>Birth Year/Creation Year:</strong> ${appearance.birthYear}</p>
-                    <p><strong>Death Year/Last Year Of Usage:</strong> ${appearance.deathYear}</p>
-                    <p><strong>Extras:</strong> ${appearance.extras}</p>
-                    <div style="text-align: center;">
-                        ${appearance.imageSrc ? `<img src="${appearance.imageSrc}" alt="Human Image" style="max-width: 200px;">` : ''}
-                    </div>
-                </div>
-            `;
-        } else {
-            appearanceDiv.innerHTML = '<p>No appearance details available.</p>';
+        // Add image previews
+        if (appearance.images && appearance.images.length > 0) {
+            const imagePreviewContainer = document.createElement("div");
+            imagePreviewContainer.className = "image-preview";
+            appearance.images.forEach((imageSrc) => {
+                const img = document.createElement("img");
+                img.src = imageSrc;
+                img.style.maxWidth = "300px";
+                img.style.maxHeight = "300px";
+                img.style.marginRight = "30px";
+                imagePreviewContainer.appendChild(img);
+            });
+            li.appendChild(imagePreviewContainer);
         }
-    } else {
-        appearanceDiv.innerHTML = '<p>No appearance details available.</p>';
-    }
-}
 
-// Save backstory details
-function saveBackstory() {
-    const backstory = {
-        causeOfDeath: document.getElementById('causeOfDeath').value,
-        family: document.getElementById('family').value,
-        age: document.getElementById('age').value,
-        friends: document.getElementById('friends').value,
-        enemies: document.getElementById('enemies').value,
-        nicknames: document.getElementById('nicknames').value,
-    };
+        // Add Delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+            deleteAppearance(appearance.name, li);
+        });
+        li.appendChild(deleteButton);
 
-    const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU');
-    const currentHuman = localStorage.getItem('currentHuman');
-
-    if (!humans[currentAU]) {
-        humans[currentAU] = [];
+        appearanceList.appendChild(li);
     }
 
-    const humanIndex = humans[currentAU].findIndex(h => h.name === currentHuman);
-    if (humanIndex === -1) {
-        humans[currentAU].push({ name: currentHuman, backstory });
-    } else {
-        humans[currentAU][humanIndex].backstory = backstory;
+    // Delete appearance
+    function deleteAppearance(appearanceName, listItem) {
+        const appearances = JSON.parse(localStorage.getItem("appearanceList")) || [];
+        const filteredAppearances = appearances.filter((a) => a.name !== appearanceName);
+        localStorage.setItem("appearanceList", JSON.stringify(filteredAppearances));
+        listItem.remove();
     }
 
-    localStorage.setItem('humans', JSON.stringify(humans));
-    alert('Backstory saved successfully!');
+    // Convert file to Base64 string
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+});
 
-    loadBackstoryDetails(currentHuman);
-}
 
-// Load backstory details
-function loadBackstoryDetails(humanName) {
-    const backstoryDiv = document.getElementById('backstoryDetails');
-    const humans = JSON.parse(localStorage.getItem('humans')) || {};
-    const currentAU = localStorage.getItem('currentAU');
 
-    backstoryDiv.innerHTML = '';
-    if (humans[currentAU]) {
-        const human = humans[currentAU].find(h => h.name === humanName);
-        if (human && human.backstory) {
-            const backstory = human.backstory;
-            backstoryDiv.innerHTML = `
-                <div>
-                    <p><strong>Cause of Death/Reason For Diactivation:</strong> ${backstory.causeOfDeath}</p>
-                    <p><strong>Family/Group:</strong> ${backstory.family}</p>
-                    <p><strong>Age/Years Of Usage:</strong> ${backstory.age}</p>
-                    <p><strong>Friends:</strong> ${backstory.friends}</p>
-                    <p><strong>Enemies:</strong> ${backstory.enemies}</p>
-                    <p><strong>Nicknames:</strong> ${backstory.nicknames}</p>
-                </div>
-            `;
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const personalityForm = document.getElementById("addPersonalityForm");
+    const personalityNameInput = document.getElementById("personalityNameInput");
+    const personalityList = document.getElementById("personalityList");
+
+    // Load existing personalities on page load
+    loadPersonalities();
+
+    // Add personality form submission handler
+    personalityForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const personalityName = personalityNameInput.value.trim();
+
+        if (personalityName) {
+            savePersonality(personalityName);
+            addPersonalityToList(personalityName);
+            personalityNameInput.value = ""; // Clear input field
         } else {
-            backstoryDiv.innerHTML = '<p>No backstory details available.</p>';
+            alert("Please enter a valid personality name.");
         }
-    } else {
-        backstoryDiv.innerHTML = '<p>No backstory details available.</p>';
+    });
+
+    // Load personalities from localStorage
+    function loadPersonalities() {
+        const personalities = JSON.parse(localStorage.getItem("personalityList")) || [];
+        personalities.forEach((personality) => {
+            addPersonalityToList(personality);
+        });
     }
-}
+
+    // Save personality to localStorage
+    function savePersonality(personalityName) {
+        const personalities = JSON.parse(localStorage.getItem("personalityList")) || [];
+        personalities.push(personalityName);
+        localStorage.setItem("personalityList", JSON.stringify(personalities));
+    }
+
+    // Add a personality to the DOM list
+    function addPersonalityToList(personalityName) {
+        const li = document.createElement("li");
+        li.className = "personality-item";
+
+        const text = document.createTextNode(personalityName);
+        li.appendChild(text);
+
+        // Add Delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+            deletePersonality(personalityName, li);
+        });
+        li.appendChild(deleteButton);
+
+        personalityList.appendChild(li);
+    }
+
+    // Delete personality
+    function deletePersonality(personalityName, listItem) {
+        const personalities = JSON.parse(localStorage.getItem("personalityList")) || [];
+        const filteredPersonalities = personalities.filter((name) => name !== personalityName);
+        localStorage.setItem("personalityList", JSON.stringify(filteredPersonalities));
+        listItem.remove();
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const backstoryForm = document.getElementById("addBackstoryForm");
+    const backstoryNameInput = document.getElementById("backstoryNameInput");
+    const backstoryList = document.getElementById("backstoryList");
+
+    // Load existing personalities on page load
+    loadBackstories();
+
+    // Add personality form submission handler
+    backstoryForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const backstoryName = backstoryNameInput.value.trim();
+
+        if (backstoryName) {
+            saveBackstory(backstoryName);
+            addBackstoryToList(backstoryName);
+            backstoryNameInput.value = ""; // Clear input field
+        } else {
+            alert("Please enter a valid backstory name.");
+        }
+    });
+
+    // Load from localStorage
+    function loadBackstories() {
+        const backstories = JSON.parse(localStorage.getItem("backstoryList")) || [];
+        backstories.forEach((backstory) => {
+            addBackstoryToList(backstory);
+        });
+    }
+
+    // Save personality to localStorage
+    function saveBackstory(backstoryName) {
+        const backstories = JSON.parse(localStorage.getItem("backstoryList")) || [];
+        backstories.push(backstoryName);
+        localStorage.setItem("backstoryList", JSON.stringify(backstories));
+    }
+
+    // Add a personality to the DOM list
+    function addBackstoryToList(backstoryName) {
+        const li = document.createElement("li");
+        li.className = "backstory-item";
+
+        const text = document.createTextNode(backstoryName);
+        li.appendChild(text);
+
+        // Add Delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+            deleteBackstory(backstoryName, li);
+        });
+        li.appendChild(deleteButton);
+
+        backstoryList.appendChild(li);
+    }
+
+    // Delete personality
+    function deleteBackstory(backstoryName, listItem) {
+        const backstories = JSON.parse(localStorage.getItem("backstoryList")) || [];
+        const filteredBackstories = backstories.filter((name) => name !== backstoryName);
+        localStorage.setItem("backstoryList", JSON.stringify(filteredBackstories));
+        listItem.remove();
+    }
+});

@@ -1,0 +1,274 @@
+/* Global Styles */
+.high-contrast body {
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* Bright white text */
+    font-family: Arial, sans-serif; /* Default font */
+}
+
+/* Header */
+.high-contrast header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Navigation */
+.high-contrast nav {
+    background-color: #000000; /* Black background */
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.5); /* White shadow */
+}
+
+.high-contrast nav a {
+    color: #FFD700; /* Bright yellow */
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.high-contrast nav a:hover {
+    background-color: #FF0000; /* Red highlight */
+    color: #000000; /* Black text */
+    text-decoration: underline;
+}
+
+/* Containers */
+.high-contrast .container {
+    text-align: center;
+}
+
+.high-contrast .add-au {
+    margin-bottom: 20px;
+}
+
+/* AU Boxes */
+.high-contrast .au-box {
+    background-color: #333333; /* Dark gray background */
+    border: 2px solid #FFD700; /* Bright yellow border */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White shadow */
+}
+
+.high-contrast .au-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.high-contrast .au-item {
+    margin: 10px 0;
+}
+
+/* Buttons */
+.high-contrast button,
+.high-contrast .au-button,
+.high-contrast .edit-button,
+.high-contrast .delete-button,
+.high-contrast .move-up-button,
+.high-contrast .move-down-button {
+    background-color: #FFD700; /* Bright yellow */
+    color: #000000; /* Black text */
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.high-contrast button:hover,
+.high-contrast .au-button:hover,
+.high-contrast .edit-button:hover,
+.high-contrast .delete-button:hover,
+.high-contrast .move-up-button:hover,
+.high-contrast .move-down-button:hover {
+    background-color: #FF0000; /* Bright red */
+    color: #FFFFFF; /* White text */
+}
+
+.high-contrast .edit-button {
+    margin-left: 10px;
+}
+
+.high-contrast .delete-button {
+    margin-left: 5px;
+}
+
+/* Inputs */
+.high-contrast input[type="text"],
+.high-contrast input[type="number"],
+.high-contrast textarea {
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 2px solid #FFD700; /* Yellow border */
+    border-radius: 5px;
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+    width: calc(100% - 26px);
+    transition: border-color 0.3s;
+}
+
+.high-contrast input[type="text"]:focus,
+.high-contrast input[type="number"]:focus,
+.high-contrast textarea:focus {
+    border-color: #FF0000; /* Bright red on focus */
+    outline: none;
+}
+
+.high-contrast input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #FFD700; /* Yellow border */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Appearance Box */
+.high-contrast .appearance-box {
+    background-color: #000000; /* Black background */
+    border: 2px solid #FFD700; /* Yellow border */
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    color: #FFFFFF; /* White text */
+}
+
+.high-contrast .appearance-box p {
+    margin: 5px 0;
+}
+
+.high-contrast .appearance-box img {
+    display: block;
+    margin: 10px auto;
+    max-width: 200px;
+}
+
+.high-contrast .color-square {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    border: 2px solid #FFFFFF; /* White border */
+}
+
+/* Timeline */
+.high-contrast .timeline-event {
+    padding: 10px;
+    border: 2px solid #FFD700; /* Yellow border */
+    border-radius: 5px;
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+    position: relative;
+}
+
+/* Editing Form */
+.high-contrast .editing-form {
+    display: none;
+    margin-top: 10px;
+}
+
+.high-contrast .editing-form input,
+.high-contrast .editing-form textarea {
+    margin-bottom: 10px;
+    width: calc(100% - 26px);
+    padding: 5px;
+    border: 2px solid #FFD700; /* Yellow border */
+    border-radius: 5px;
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+}
+
+/* Family Tree */
+.high-contrast #family-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.high-contrast .member {
+    background-color: #FFFFFF; /* White background */
+    border: 2px solid #FFD700; /* Yellow border */
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    color: #000000; /* Black text */
+}
+
+.high-contrast .family-member {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.high-contrast .partner-line {
+    margin: 0 5px;
+    font-weight: bold;
+    color: #FFD700; /* Yellow */
+}
+
+/* Dropdown */
+.high-contrast .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.high-contrast .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFD700; /* Yellow background */
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.5);
+    min-width: 160px;
+    z-index: 1;
+}
+
+.high-contrast .dropdown-content a {
+    display: block;
+    color: #000000; /* Black text */
+    padding: 10px;
+    text-decoration: none;
+}
+
+.high-contrast .dropdown-content a:hover {
+    background-color: #FF0000; /* Red */
+    color: #FFFFFF; /* White text */
+    cursor: pointer;
+}
+
+.high-contrast .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Dropdown Menu */
+.high-contrast .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #FFFFFF; /* White background */
+    border: 2px solid #FFD700; /* Yellow border */
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+.high-contrast .dropdown-menu button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: #FFD700; /* Yellow text */
+}
+
+.high-contrast .dropdown-menu button:hover {
+    background-color: #FF0000; /* Red */
+    color: #FFFFFF; /* White */
+}

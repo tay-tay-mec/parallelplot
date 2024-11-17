@@ -29,6 +29,58 @@ function setupLowContrastToggle() {
     });
 }
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('highContrastToggle');
+
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('highContrast') === 'true') {
+        document.body.classList.add('high-contrast');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('high-contrast');
+        
+        // Save the user's preference in local storage
+        const ishighContrast = document.body.classList.contains('high-contrast');
+        localStorage.setItem('highContrast', ishighContrast);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('LightToggle');
+
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('Light') === 'true') {
+        document.body.classList.add('light');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        
+        // Save the user's preference in local storage
+        const isLight = document.body.classList.contains('light');
+        localStorage.setItem('Light', isLight);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('PurpleToggle');
+
+    // Check if low contrast mode was previously enabled
+    if (localStorage.getItem('Purple') === 'true') {
+        document.body.classList.add('purple');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('purple');
+        
+        // Save the user's preference in local storage
+        const isPurple = document.body.classList.contains('purple');
+        localStorage.setItem('Purple', isPurple);
+    });
+});
+
 // HUMAN FUNCTIONS
 
 function loadHumans() {

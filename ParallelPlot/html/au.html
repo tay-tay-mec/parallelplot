@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AU Page</title>
-    <link rel="stylesheet" href="../css/styles.css"> <!-- Link to CSS file -->
-    <link rel="stylesheet" href="../css/low.css"> <!-- Link to CSS file -->
+    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="stylesheet" href="../css/low.css"> 
+    <link rel="stylesheet" href="../css/purple.css"> 
+    <link rel="stylesheet" href="../css/high.css"> 
+    <link rel="stylesheet" href="../css/light.css"> 
 </head>
 <body>
+    <div class="tv-lines-overlay"></div>
+    <div class="content">
     <header>
         <h1 id="auTitle"></h1> <!-- Title will be set based on selected AU -->
     </header>
 
     <nav>
         <a href="../html/index.html">Home</a>
+        <div class="dropdown">
+            <a>Modes ▼</a>
+            <div class="dropdown-content">
+                <a id="lowContrastToggle">Low Contrast</a>
+                <a id="highContrastToggle">High Contrast</a>
+                <a id="LightToggle">Light Mode</a>
+                <a id="PurpleToggle">Purple Mode</a>
+            </div>
+        </div>
     </nav>
 
     <div class="container">
@@ -50,6 +64,7 @@
         <ul id="familyList">
             <!-- Families will be listed here -->
         </ul>
+    </div>
     </div>
     <script src="../js/au.js"></script> <!-- Link to au.js file -->
 </body>

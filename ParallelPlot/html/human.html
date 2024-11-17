@@ -4,107 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Info</title>
-    <link rel="stylesheet" href="../css/styles.css"> <!-- Link to CSS file -->
-    <link rel="stylesheet" href="../css/low.css"> <!-- Link to CSS file -->
+    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="stylesheet" href="../css/low.css"> 
+    <link rel="stylesheet" href="../css/purple.css"> 
+    <link rel="stylesheet" href="../css/high.css"> 
+    <link rel="stylesheet" href="../css/light.css"> 
 </head>
 <body>
+    <div class="tv-lines-overlay"></div>
+    <div class="content">
     <header>
         <h1 id="humanName"></h1> <!-- This will show the human's name -->
     </header>
 
     <nav>
         <a href="../html/index.html">Home</a>
+        <div class="dropdown">
+            <a>Modes ▼</a>
+            <div class="dropdown-content">
+                <a id="lowContrastToggle">Low Contrast</a>
+                <a id="highContrastToggle">High Contrast</a>
+                <a id="LightToggle">Light Mode</a>
+                <a id="PurpleToggle">Purple Mode</a>
+            </div>
+        </div>
         <a href="../html/au.html">Back to AU</a>
     </nav>
-
-    <div class="container">
-        <h2>Character Information</h2>
-        <div id="humanDetails"></div> <!-- Area to display human details -->
-
-        <h2>Add Appearance Details</h2>
-        <div id="appearanceForm">
-            <label for="skinColor">Skin Color/Main Color:</label>
-            <input type="color" id="skinColor" onchange="updateColor('skinColor', 'skinColorHex', 'skinColorSquare')">
-            <span id="skinColorSquare" class="color-square"></span>
-            <input type="text" id="skinColorHex" placeholder="or enter HEX code">
-
-            <label for="LeyeColor">Left Eye Color:</label>
-            <input type="color" id="LeyeColor" onchange="updateColor('LeyeColor', 'LeyeColorHex', 'LeyeColorSquare')">
-            <span id="LeyeColorSquare" class="color-square"></span>
-            <input type="text" id="LeyeColorHex" placeholder="or enter HEX code">
-
-            <label for="ReyeColor">Right Eye Color:</label>
-            <input type="color" id="ReyeColor" onchange="updateColor('ReyeColor', 'ReyeColorHex', 'ReyeColorSquare')">
-            <span id="ReyeColorSquare" class="color-square"></span>
-            <input type="text" id="ReyeColorHex" placeholder="or enter HEX code">
-
-            <label for="hairColor">Hair Color/Secondary Color:</label>
-            <input type="color" id="hairColor" onchange="updateColor('hairColor', 'hairColorHex', 'hairColorSquare')">
-            <span id="hairColorSquare" class="color-square"></span>
-            <input type="text" id="hairColorHex" placeholder="or enter HEX code">
-
-            <label for="hairLength">Hair Length/Texture :</label>
-            <input type="text" id="hairLength" placeholder="e.g., short, long">
-
-            <label for="hairStructure">Hair Structure/Material:</label>
-            <input type="text" id="hairStructure" placeholder="e.g., curly, straight">
-
-            <label for="hairStyle">Hair Style/Ctreator:</label>
-            <input type="text" id="hairStyle" placeholder="e.g., bun, ponytail">
-
-            <label for="clothingStyle">Clothing Style:</label>
-            <input type="text" id="clothingStyle" placeholder="e.g., casual, formal">
-
-            <label for="birthYear">Birth Year/Creation Year:</label>
-            <input type="number" id="birthYear" placeholder="e.g., 1990">
-
-            <label for="deathYear">Death Year/ Last Year Of Usage:</label>
-            <input type="number" id="deathYear" placeholder="e.g., 2020">
-
-            <label for="species">Species:</label>
-            <textarea id="species" placeholder="e.g., human, animatronic"></textarea>
-
-            <label for="extras">Extras:</label>
-            <textarea id="extras" placeholder="Any extra details..."></textarea>
-
-            <label for="humanImage">Upload Image:</label>
-            <input type="file" id="humanImage" accept="image/*" onchange="previewImage(event)">
-
-            <img id="imagePreview" src="" alt="Image Preview" style="display:none; max-width: 200px; margin-top: 10px;">
-            
-            <button onclick="saveAppearance()">Save Appearance</button>
-        </div>
-
-        <h2>Appearance Details</h2>
-        <div id="appearanceDetails" class="appearance-box"></div> <!-- Area to display appearance details -->
-
-        <h2>Add Backstory Details</h2>
-        <div id="backstoryForm">
-            <label for="causeOfDeath">Cause of Death/ Reason For Deactivation:</label>
-            <input type="text" id="causeOfDeath" placeholder="Cause of Death">
-
-            <label for="family">Family/Group:</label>
-            <input type="text" id="family" placeholder="Family">
-
-            <label for="age">Age/Years Of Usage:</label>
-            <input type="text" id="age" placeholder="Age">
-
-            <label for="friends">Friends:</label>
-            <input type="text" id="friends" placeholder="Friends">
-
-            <label for="enemies">Enemies:</label>
-            <input type="text" id="enemies" placeholder="Enemies">
-
-            <label for="nicknames">Nicknames:</label>
-            <input type="text" id="nicknames" placeholder="Nicknames">
-
-            <button onclick="saveBackstory()">Save Backstory</button>
-        </div>
-
-        <h2>Backstory Details</h2>
-        <div id="backstoryDetails" class="backstory-box"></div> <!-- Area to display backstory details -->
+<div class="container">
+    <div class="appearance">
+        <div class="glitch" data-text="Appearance"><h1>Appearance</h1></div>
+    <form id="addAppearanceForm">
+        <input type="text" id="appearanceNameInput" placeholder="Enter appearance" required />
+        <input type="file" id="imageInput" multiple accept="image/*" />
+        <button type="submit">Add Appearance</button>
+    </form>
+    <ul id="appearanceList"></ul>
+    </div>
+    <div class="Personality">
+        <h1>Personalities</h1>
+        <form id="addPersonalityForm">
+            <input type="text" id="personalityNameInput" placeholder="Enter personality" required />
+            <button type="submit">Add Personality</button>
+        </form>
+        <ul id="personalityList"></ul>
     </div>
 
+    <div class="Backstory">
+        <h1>Backstory</h1>
+        <form id="addBackstoryForm">
+            <input type="text" id="backstoryNameInput" placeholder="Enter backstory" required />
+            <button type="submit">Add Backstory</button>
+        </form>
+        <ul id="backstoryList"></ul>
+    </div>
+
+</div>
+
+</div>
     <script src="../js/human.js"></script> <!-- Link to human.js file -->
 </body>
 </html>
