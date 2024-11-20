@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallel Plot</title>
+    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="stylesheet" href="../css/low.css"> 
+    <link rel="stylesheet" href="../css/purple.css"> 
+    <link rel="stylesheet" href="../css/high.css"> 
+    <link rel="stylesheet" href="../css/light.css"> 
+</head>
+<body>
+    <div class="tv-lines-overlay"></div>
+    <div class="content">
+<header class="normal">
+    <h1 >Parallel Plot</h1>
+    <h2 >I always come back</h2>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+        <div class="dropdown">
+            <a>Modes ▼</a>
+            <div class="dropdown-content">
+                <a id="lowContrastToggle">Low Contrast</a>
+                <a id="highContrastToggle">High Contrast</a>
+                <a id="LightToggle">Light Mode</a>
+                <a id="PurpleToggle">Purple Mode</a>
+            </div>
+            <a href="../html/au.html">Back to AU</a>
+        </div>
+</div>
+</nav>
+
+<div class="container">
+    <h2>Add a Theory</h2>
+    <input type="text" id="theoryName" placeholder="Enter Theory">
+    <button onclick="addTheory()">Add Theory</button>
+
+    <h2>Your Theories</h2>
+    <ul class="theory-list" id="theoryList">
+        <!-- Added humans will appear here -->
+    </ul>
+</div>
+
+<script src="../js/theory.js"></script> <!-- Link to index.js file -->
+</body>
+</html>

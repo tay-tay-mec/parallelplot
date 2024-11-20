@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Info</title>
+    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="stylesheet" href="../css/low.css"> 
+    <link rel="stylesheet" href="../css/purple.css"> 
+    <link rel="stylesheet" href="../css/high.css"> 
+    <link rel="stylesheet" href="../css/light.css"> 
+</head>
+<body>
+    <div class="tv-lines-overlay"></div>
+    <div class="content">
+    <header>
+        <h1 id="humanName"></h1> <!-- This will show the human's name -->
+    </header>
+
+    <nav>
+        <a href="../html/index.html">Home</a>
+        <div class="dropdown">
+            <a>Modes ▼</a>
+            <div class="dropdown-content">
+                <a id="lowContrastToggle">Low Contrast</a>
+                <a id="highContrastToggle">High Contrast</a>
+                <a id="LightToggle">Light Mode</a>
+                <a id="PurpleToggle">Purple Mode</a>
+            </div>
+        </div>
+        <a href="../html/au.html">Back to AU</a>
+    </nav>
+
+    <div class="Fact">
+        <h1>What is it?</h1>
+        <form id="addFactForm">
+            <input type="text" id="factNameInput" placeholder="Enter describtion" required />
+            <button type="submit">Add Describtion</button>
+        </form>
+        <ul id="factList"></ul>
+    </div>
+
+</div>
+    <script src="../js/in-theory.js"></script> <!-- Link to human.js file -->
+</body>
+</html>

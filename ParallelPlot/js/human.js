@@ -177,21 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const personalityForm = document.getElementById("addPersonalityForm");
     const personalityNameInput = document.getElementById("personalityNameInput");
@@ -256,31 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
         listItem.remove();
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const backstoryForm = document.getElementById("addBackstoryForm");

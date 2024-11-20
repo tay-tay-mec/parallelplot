@@ -72,6 +72,23 @@ nav a:hover {
 .au-item {
     margin: 10px 0;
 }
+.theory-button{
+    background-color: #401306;
+    color: #ff4000;
+    border: none;
+    padding: 10px;
+    margin-left: 47%;
+    margin-right: 45%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: 100px;
+}
+.theory-button a{
+    text-decoration: none;
+    color: #ffbb00;
+}
 
 /* Buttons */
 button,
@@ -79,7 +96,8 @@ button,
 .edit-button,
 .delete-button,
 .move-up-button,
-.move-down-button {
+.move-down-button
+{
     background-color: #401306;
     color: #ff4000;
     border: none;
