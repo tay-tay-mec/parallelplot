@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar with Dropdown</title>
+    <title>Alternative Self Page</title>
     <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/main.js" defer></script>
+    <script src="../js/alt-self-script,js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <nav>
@@ -22,30 +23,35 @@
                 </div>
             </div>
       
-      <a href="#news">News</a>
+      <a href="index.html#news">News</a>
     </div>
     </div>
     </nav>
-            <h1>Parallel Plot</h1>
-    <div class="container">
-        <h1>Manage Your AUs</h1>
-        <input type="text" id="newAUName" placeholder="Enter AU name">
-        <button onclick="addAU()">Add AU</button>
-        <div id="auList"></div>
+        <h1>Alternative Self</h1>
+        <textarea id="altSelfDescription" placeholder="Describe the alternative self..."></textarea>
+        <button onclick="saveAltSelfDetails()">Save</button>
     </div>
 
-    <div class="news" id="news">
-        <p>Website Updates:
+    <div>
+        <h2>Appearance</h2>
+        <textarea id="newAppearancePrompt" placeholder="Add appearance detail..."></textarea>
+        <button id="addAppearancePrompt">Add Appearance</button>
+        <div id="appearanceList"></div>
+    </div>
 
-            Remodeling of the Website: The website has undergone a design overhaul to improve user experience and visual appeal.
-             This includes a fresh layout, optimized structure, and more user-friendly navigation.
-             <br><br>
-            Adding of Alternate Personas: The option to include alternate personas has been integrated.
-             Users can now create and manage multiple personas, each with distinct identities, backgrounds, and characteristics.
-            <br><br>
-            Added Glitchtrap
-            
-            </p>
+    <div>
+        <h2>Personality</h2>
+        <textarea id="newPersonalityPrompt" placeholder="Add personality detail..."></textarea>
+        <button id="addPersonalityPrompt">Add Personality</button>
+        <div id="personalityList"></div>
+    </div>
+
+    <div>
+        <h2>Backstory</h2>
+        <textarea id="newBackstoryPrompt" placeholder="Add backstory detail..."></textarea>
+        <button id="addBackstoryPrompt">Add Backstory</button>
+        <div id="backstoryList"></div>
     </div>
 </body>
+
 </html>

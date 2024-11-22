@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar with Dropdown</title>
+    <title>Family Page</title>
     <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/main.js" defer></script>
+    <script src="../js/family-page-script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -22,30 +22,33 @@
                 </div>
             </div>
       
-      <a href="#news">News</a>
+      <a href="index.html#news">News</a>
     </div>
     </div>
     </nav>
-            <h1>Parallel Plot</h1>
-    <div class="container">
-        <h1>Manage Your AUs</h1>
-        <input type="text" id="newAUName" placeholder="Enter AU name">
-        <button onclick="addAU()">Add AU</button>
-        <div id="auList"></div>
-    </div>
+    <h1 id="familyTitle">Family Page</h1>
 
-    <div class="news" id="news">
-        <p>Website Updates:
+    <textarea id="familyContent" placeholder="Write your family content here..." rows="10" cols="50"></textarea>
+    <br>
 
-            Remodeling of the Website: The website has undergone a design overhaul to improve user experience and visual appeal.
-             This includes a fresh layout, optimized structure, and more user-friendly navigation.
-             <br><br>
-            Adding of Alternate Personas: The option to include alternate personas has been integrated.
-             Users can now create and manage multiple personas, each with distinct identities, backgrounds, and characteristics.
-            <br><br>
-            Added Glitchtrap
-            
-            </p>
-    </div>
+    <div id="familyTreeContainer"></div>
+
+    <h3>Add Parent-Child Relationships</h3>
+    <form id="familyForm">
+        <label for="parent1Name">Parent 1 Name:</label>
+        <input type="text" id="parent1Name" placeholder="Enter Parent 1 Name" required><br>
+    
+        <label for="parent2Name">Parent 2 Name (optional):</label>
+        <input type="text" id="parent2Name" placeholder="Enter Parent 2 Name (optional)"><br>
+    
+        <label for="childrenNames">Children Names (comma separated):</label>
+        <input type="text" id="childrenNames" placeholder="Enter Children Names" required><br>
+    
+        <button type="button" onclick="addFamilyRelationship()">Add Family</button>
+    </form>
+    
+    <h3>Relationship Description:</h3>
+
 </body>
+
 </html>

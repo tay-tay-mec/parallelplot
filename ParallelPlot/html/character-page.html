@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Page</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/character-page-script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+        <a class="active" href="index.html"><i class="fa fa-home"></i></a>
+        <div class="dropdown">
+            <button class="dropbtn" id="colorModeToggle">Switch Mode</button>
+            <div class="dropdown-content">
+                <a href="#" id="lightModeBtn" onclick="setColorMode('light')">Light</a>
+                <a href="#" id="darkModeBtn" onclick="setColorMode('dark')">Dark</a>
+                <a href="#" id="lowContrastModeBtn" onclick="setColorMode('low-contrast')">Low Contrast</a>
+                <a href="#" id="purpleModeBtn" onclick="setColorMode('purple')">Purple</a>
+            </div>
+        </div>
+  
+  <a href="index.html#news">News</a>
+</div>
+</div>
+</nav>
+    <h1 id="characterName">Character Page</h1>
+    
+    <textarea id="characterDetails" placeholder="Write character details here..." rows="10" cols="50"></textarea>
+    <br>
+
+    <h2>Appearance</h2>
+    <input type="text" id="newAppearancePrompt" placeholder="Enter appearance detail">
+    <button onclick="addAppearance()">Add Appearance</button>
+    <div id="appearanceList"></div>
+
+    <h2>Personality</h2>
+    <input type="text" id="newPersonalityPrompt" placeholder="Enter personality detail">
+    <button onclick="addPrompt('personality')">Add Personality</button>
+    <div id="personalityList"></div>
+
+    <h2>Backstory</h2>
+    <input type="text" id="newBackstoryPrompt" placeholder="Enter backstory detail">
+    <button onclick="addPrompt('backstory')">Add Backstory</button>
+    <div id="backstoryList"></div>
+
+    <h2>Alternative Selves</h2>
+    <input type="text" id="newAltSelfName" placeholder="Enter alternative self name">
+    <button onclick="addAltSelf()">Add Alternative Self</button>
+    <div id="altSelfList"></div>
+
+    
+</body>
+</html>

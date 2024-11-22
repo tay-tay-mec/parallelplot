@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AU Page</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/au-pages.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+        <a class="active" href="index.html"><i class="fa fa-home"></i></a>
+        <div class="dropdown">
+            <button class="dropbtn" id="colorModeToggle">Switch Mode</button>
+            <div class="dropdown-content">
+                <a href="#" id="lightModeBtn" onclick="setColorMode('light')">Light</a>
+                <a href="#" id="darkModeBtn" onclick="setColorMode('dark')">Dark</a>
+                <a href="#" id="lowContrastModeBtn" onclick="setColorMode('low-contrast')">Low Contrast</a>
+                <a href="#" id="purpleModeBtn" onclick="setColorMode('purple')">Purple</a>
+            </div>
+        </div>
+  
+  <a href="index.html#news">News</a>
+</div>
+</div>
+</nav>
+
+    <h1 id="auTitle">AU Page</h1>
+    
+    <textarea id="auContent" placeholder="Add notes here..." rows="10" cols="50"></textarea>
+    <br>
+
+    <h2>Characters</h2>
+    <input type="text" id="newCharacterName" placeholder="Enter character name">
+    <button onclick="addCharacter()">Add Character</button>
+    
+    <div id="characterList"></div>
+
+    <h2>Timeline</h2>
+    <input type="date" id="eventDate">
+    <input type="text" id="eventDescription" placeholder="Event description">
+    <button onclick="addEvent()">Add Event</button>
+    <div id="timelineList"></div>
+
+    <h2>Families</h2>
+    <input type="text" id="newFamilyName" placeholder="Enter family name">
+    <button onclick="addFamily()">Add Family</button>
+    <div id="familyList"></div>
+
+
+    
+    
+    <br>
+    
+</body>
+</html>

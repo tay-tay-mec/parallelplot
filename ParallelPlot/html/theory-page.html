@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar with Dropdown</title>
+    <title>Theories Page</title>
     <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/main.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -22,30 +21,22 @@
                 </div>
             </div>
       
-      <a href="#news">News</a>
+      <a href="index.html#news">News</a>
     </div>
     </div>
     </nav>
-            <h1>Parallel Plot</h1>
-    <div class="container">
-        <h1>Manage Your AUs</h1>
-        <input type="text" id="newAUName" placeholder="Enter AU name">
-        <button onclick="addAU()">Add AU</button>
-        <div id="auList"></div>
+    <h1>Theories Page</h1>
+
+    <div>
+        <h2>Add a New Theory</h2>
+        <input type="text" id="theoryTitle" placeholder="Theory Title" />
+        <textarea id="theoryDescription" placeholder="Describe the theory..."></textarea>
+        <button id="addTheoryButton">Add Theory</button>
     </div>
 
-    <div class="news" id="news">
-        <p>Website Updates:
+    <h2>Your Theories</h2>
+    <div id="theoriesList"></div>
 
-            Remodeling of the Website: The website has undergone a design overhaul to improve user experience and visual appeal.
-             This includes a fresh layout, optimized structure, and more user-friendly navigation.
-             <br><br>
-            Adding of Alternate Personas: The option to include alternate personas has been integrated.
-             Users can now create and manage multiple personas, each with distinct identities, backgrounds, and characteristics.
-            <br><br>
-            Added Glitchtrap
-            
-            </p>
-    </div>
+    <script src="../js/theory-pages-script.js"></script>
 </body>
 </html>

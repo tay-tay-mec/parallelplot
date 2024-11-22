@@ -1,0 +1,835 @@
+/* Default Light Mode Styles */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: monospace;
+    text-align: center;
+}
+
+.news{
+    margin-top: 80%;
+    font-size: 1.5em;
+}
+
+.navbar {
+    background-color: #797979;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: yellow;
+    padding: 2.5%;
+}
+
+.navbar a:hover {
+    text-decoration: none;
+    color: yellow;
+    padding: 2.5%;
+}
+
+.dropbtn {
+    background-color: #797979;
+    color: yellow;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #797979;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: yellow;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #5a5a5a;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.au-button {
+    padding: 10px;
+    margin: 5px;
+    background-color: orangered;
+    color: yellow;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.au-button:hover {
+    background-color: red;
+}
+
+.au-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.au-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.au-item button {
+    margin: 0 5px;
+}
+
+input {
+    padding: 8px;
+    width: 200px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.edit-au {
+    margin-left: 10px;
+}
+
+/* General Button Styles */
+button {
+    background-color: orangered;
+    border: none;
+    color: yellow;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 4px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+button:hover {
+    background-color: red;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Focus Effects */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(82, 3, 3, 0.7);
+}
+
+/* Disabled Buttons */
+button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+h1, h2 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+textarea {
+    align-content: center;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+input {
+    align-content: center;
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.family-node {
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    padding: 10px 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: orangered;
+    position: relative;
+}
+
+.family-node .relation {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.relation-description {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+form input {
+    margin-bottom: 10px;
+}
+
+form button {
+    background-color: orangered;
+    color: yellow;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: red;
+}
+
+/* Dark Mode */
+/* Dark Mode Styles for All Elements */
+body.dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+    font-family: monospace;
+    text-align: center;
+}
+
+/* Navbar */
+body.dark-mode .navbar {
+    background-color: #1f1f1f; /* Dark navbar */
+}
+
+body.dark-mode .navbar a {
+    color: #e0e0e0; /* Light text */
+    padding: 2.5%;
+}
+
+body.dark-mode .navbar a:hover {
+    color: #ffffff; /* White text on hover */
+    background-color: #333; /* Darker background on hover */
+}
+
+/* Dropdown Button */
+body.dark-mode .dropbtn {
+    background-color: #333; /* Dark background for button */
+    color: #e0e0e0; /* Light text */
+}
+
+body.dark-mode .dropdown-content {
+    background-color: #333; /* Dark background for dropdown */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .dropdown-content a {
+    color: #e0e0e0; /* Light text for dropdown links */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+body.dark-mode .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+body.dark-mode .dropdown:hover .dropbtn {
+    background-color: #444; /* Darker background on hover */
+}
+
+/* Container */
+body.dark-mode .container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* General Button Styles */
+body.dark-mode button {
+    background-color: #333; /* Dark background for buttons */
+    border: none;
+    color: #e0e0e0; /* Light text */
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 4px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Darker shadow */
+    transition: all 0.3s ease;
+}
+
+/* Button Hover Effects */
+body.dark-mode button:hover {
+    background-color: #444; /* Slightly lighter background */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
+    transform: translateY(-2px);
+}
+
+/* Focus Effects for Buttons */
+body.dark-mode button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(82, 3, 3, 0.7); /* Glow effect */
+}
+
+/* Disabled Buttons */
+body.dark-mode button:disabled {
+    background-color: #666666;
+    color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Form Input */
+body.dark-mode input {
+    background-color: #333; /* Dark background for inputs */
+    color: #e0e0e0; /* Light text for inputs */
+    border: 1px solid #444; /* Light border */
+}
+
+/* Textarea */
+body.dark-mode textarea {
+    background-color: #333; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Headers */
+body.dark-mode h1, body.dark-mode h2 {
+    text-align: center;
+    text-decoration: underline;
+    color: #e0e0e0; /* Light text */
+}
+
+/* AU Button */
+body.dark-mode .au-button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #444; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+body.dark-mode .au-button:hover {
+    background-color: #555; /* Lighter dark on hover */
+}
+
+/* AU List */
+body.dark-mode .au-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* AU Item */
+body.dark-mode .au-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333; /* Dark background */
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #444; /* Light border */
+    border-radius: 5px;
+}
+
+body.dark-mode .au-item button {
+    margin: 0 5px;
+}
+
+/* Family Node */
+body.dark-mode .family-node {
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    padding: 10px 15px;
+    border: 2px solid #444; /* Light border */
+    border-radius: 8px;
+    background-color: #444; /* Dark background */
+    position: relative;
+}
+
+body.dark-mode .family-node .relation {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #ccc; /* Light gray */
+}
+
+body.dark-mode .relation-description {
+    font-size: 14px;
+    color: #e0e0e0; /* Light text */
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Dropdown Content */
+body.dark-mode .dropdown-content {
+    background-color: #444;
+}
+
+body.dark-mode .dropdown-content a {
+    color: #e0e0e0;
+}
+
+/* Forms */
+body.dark-mode form button {
+    background-color: #444;
+    color: #e0e0e0;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+body.dark-mode form button:hover {
+    background-color: #555;
+}
+
+/* Low Contrast Mode */
+/* Low Contrast Mode Styles for All Elements */
+body.low-contrast-mode {
+    background-color: #e0e0e0; /* Light gray background */
+    color: #707070; /* Dark gray text */
+    font-family: monospace;
+    text-align: center;
+}
+
+/* Navbar */
+body.low-contrast-mode .navbar {
+    background-color: #d0d0d0; /* Light gray navbar */
+}
+
+body.low-contrast-mode .navbar a {
+    color: #707070; /* Dark gray text */
+    padding: 2.5%;
+}
+
+body.low-contrast-mode .navbar a:hover {
+    color: #505050; /* Slightly darker text on hover */
+    background-color: #c0c0c0; /* Slightly darker background */
+}
+
+/* Dropdown Button */
+body.low-contrast-mode .dropbtn {
+    background-color: #c0c0c0; /* Light gray button */
+    color: #707070; /* Dark gray text */
+}
+
+body.low-contrast-mode .dropdown-content {
+    background-color: #c0c0c0; /* Light gray dropdown background */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+}
+
+body.low-contrast-mode .dropdown-content a {
+    color: #707070; /* Dark gray text for dropdown links */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+body.low-contrast-mode .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+body.low-contrast-mode .dropdown:hover .dropbtn {
+    background-color: #d0d0d0; /* Slightly lighter background on hover */
+}
+
+/* Container */
+body.low-contrast-mode .container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* General Button Styles */
+body.low-contrast-mode button {
+    background-color: #d0d0d0; /* Light background for buttons */
+    border: none;
+    color: #707070; /* Dark gray text */
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 4px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: all 0.3s ease;
+}
+
+/* Button Hover Effects */
+body.low-contrast-mode button:hover {
+    background-color: #b0b0b0; /* Slightly darker background */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly darker shadow */
+    transform: translateY(-2px);
+}
+
+/* Focus Effects for Buttons */
+body.low-contrast-mode button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(82, 3, 3, 0.2); /* Subtle glow effect */
+}
+
+/* Disabled Buttons */
+body.low-contrast-mode button:disabled {
+    background-color: #cccccc;
+    color: #999999;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Form Input */
+body.low-contrast-mode input {
+    background-color: #d0d0d0; /* Light background for inputs */
+    color: #707070; /* Dark gray text for inputs */
+    border-radius: 5px;
+    border: 1px solid #b0b0b0; /* Light border */
+}
+
+/* Textarea */
+body.low-contrast-mode textarea {
+    background-color: #d0d0d0; /* Light background */
+    color: #707070; /* Dark gray text */
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Headers */
+body.low-contrast-mode h1, body.low-contrast-mode h2 {
+    text-align: center;
+    text-decoration: underline;
+    color: #707070; /* Dark gray text */
+}
+
+/* AU Button */
+body.low-contrast-mode .au-button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #d0d0d0; /* Light background */
+    color: #707070; /* Dark gray text */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+body.low-contrast-mode .au-button:hover {
+    background-color: #b0b0b0; /* Slightly darker background */
+}
+
+/* AU List */
+body.low-contrast-mode .au-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* AU Item */
+body.low-contrast-mode .au-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d0d0d0; /* Light background */
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #b0b0b0; /* Light border */
+    border-radius: 5px;
+}
+
+body.low-contrast-mode .au-item button {
+    margin: 0 5px;
+}
+
+/* Family Node */
+body.low-contrast-mode .family-node {
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    padding: 10px 15px;
+    border: 2px solid #b0b0b0; /* Light border */
+    border-radius: 8px;
+    background-color: #d0d0d0; /* Light background */
+    position: relative;
+}
+
+body.low-contrast-mode .family-node .relation {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #707070; /* Dark gray */
+}
+
+body.low-contrast-mode .relation-description {
+    font-size: 14px;
+    color: #707070; /* Dark gray text */
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Dropdown Content */
+body.low-contrast-mode .dropdown-content {
+    background-color: #d0d0d0; /* Light background */
+}
+
+body.low-contrast-mode .dropdown-content a {
+    color: #707070; /* Dark gray text */
+}
+
+/* Forms */
+body.low-contrast-mode form button {
+    background-color: #d0d0d0; /* Light background */
+    color: #707070; /* Dark gray text */
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+body.low-contrast-mode form button:hover {
+    background-color: #b0b0b0; /* Slightly darker background */
+}
+
+/* Purple Mode */
+/* Purple Mode Styles for All Elements */
+body.purple-mode {
+    background-color: #2e003e; /* Deep purple background */
+    color: #e0b3e6; /* Light lavender text */
+    font-family: monospace;
+    text-align: center;
+}
+
+/* Navbar */
+body.purple-mode .navbar {
+    background-color: #4a006e; /* Purple navbar */
+}
+
+body.purple-mode .navbar a {
+    color: #e0b3e6; /* Light lavender text */
+    padding: 2.5%;
+}
+
+body.purple-mode .navbar a:hover {
+    color: #d1a0d1; /* Slightly lighter lavender on hover */
+    background-color: #6a006d; /* Slightly darker purple on hover */
+}
+
+/* Dropdown Button */
+body.purple-mode .dropbtn {
+    background-color: #6a006d; /* Purple button */
+    color: #e0b3e6; /* Light lavender text */
+}
+
+body.purple-mode .dropdown-content {
+    background-color: #6a006d; /* Purple dropdown background */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Slightly darker shadow */
+}
+
+body.purple-mode .dropdown-content a {
+    color: #e0b3e6; /* Light lavender text */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+body.purple-mode .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+body.purple-mode .dropdown:hover .dropbtn {
+    background-color: #7a007f; /* Slightly lighter purple on hover */
+}
+
+/* Container */
+body.purple-mode .container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* General Button Styles */
+body.purple-mode button {
+    background-color: #7a007f; /* Purple button background */
+    border: none;
+    color: #e0b3e6; /* Light lavender text */
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 4px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Purple shadow */
+    transition: all 0.3s ease;
+}
+
+/* Button Hover Effects */
+body.purple-mode button:hover {
+    background-color: #8a0089; /* Slightly lighter purple on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Darker shadow */
+    transform: translateY(-2px);
+}
+
+/* Focus Effects for Buttons */
+body.purple-mode button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Stronger glow effect */
+}
+
+/* Disabled Buttons */
+body.purple-mode button:disabled {
+    background-color: #b08dbf; /* Light purple background */
+    color: #a69ba6; /* Gray text */
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Form Input */
+body.purple-mode input {
+    background-color: #7a007f; /* Purple background */
+    color: #e0b3e6; /* Light lavender text */
+    border-radius: 5px;
+    border: 1px solid #6a006d; /* Darker purple border */
+}
+
+/* Textarea */
+body.purple-mode textarea {
+    background-color: #7a007f; /* Purple background */
+    color: #e0b3e6; /* Light lavender text */
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Headers */
+body.purple-mode h1, body.purple-mode h2 {
+    text-align: center;
+    text-decoration: underline;
+    color: #e0b3e6; /* Light lavender text */
+}
+
+/* AU Button */
+body.purple-mode .au-button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #7a007f; /* Purple button background */
+    color: #e0b3e6; /* Light lavender text */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+body.purple-mode .au-button:hover {
+    background-color: #8a0089; /* Slightly lighter purple */
+}
+
+/* AU List */
+body.purple-mode .au-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* AU Item */
+body.purple-mode .au-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7a007f; /* Purple background */
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #6a006d; /* Darker purple border */
+    border-radius: 5px;
+}
+
+body.purple-mode .au-item button {
+    margin: 0 5px;
+}
+
+/* Family Node */
+body.purple-mode .family-node {
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    padding: 10px 15px;
+    border: 2px solid #6a006d; /* Dark purple border */
+    border-radius: 8px;
+    background-color: #7a007f; /* Purple background */
+    position: relative;
+}
+
+body.purple-mode .family-node .relation {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #e0b3e6; /* Light lavender text */
+}
+
+body.purple-mode .relation-description {
+    font-size: 14px;
+    color: #e0b3e6; /* Light lavender text */
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Dropdown Content */
+body.purple-mode .dropdown-content {
+    background-color: #7a007f; /* Purple background */
+}
+
+body.purple-mode .dropdown-content a {
+    color: #e0b3e6; /* Light lavender text */
+}
+
+/* Forms */
+body.purple-mode form button {
+    background-color: #7a007f; /* Purple background */
+    color: #e0b3e6; /* Light lavender text */
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+body.purple-mode form button:hover {
+    background-color: #8a0089; /* Slightly lighter purple */
+}
