@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/main.js" defer></script>
+    <script src="../js/jeremy-script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -26,25 +26,11 @@
     </div>
     </div>
     </nav>
-            <h1>Parallel Plot</h1>
-    <div class="container">
-        <h1>Manage Your AUs</h1>
-        <input type="text" id="newAUName" placeholder="Enter AU name">
-        <button onclick="addAU()">Add AU</button>
-        <div id="auList"></div>
+    <div id="dinoGameContainer">
+        <h2>Save HIM</h2>
+        <canvas id="dinoCanvas" width="800" height="200"></canvas>
+        <p>Press Spacebar to jump!</p>
     </div>
-
-    <div class="news" id="news">
-        <p>Website Updates:
-
-            Alternative selves are fixed. The option to change the Alternative selves 
-            had a few bugs
-            <br><br>
-            You now can add your theoreis
-            <br><br>
-            Added Glitchtrap
-            
-            </p>
-    </div>
+    
 </body>
 </html>

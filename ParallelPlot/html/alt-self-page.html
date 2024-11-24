@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alternative Self Page</title>
+    <title>Alternative Self</title>
     <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/alt-self-script,js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="../js/alt-self-script.js" defer></script>
 </head>
 <body>
     <nav>
@@ -22,36 +22,47 @@
                     <a href="#" id="purpleModeBtn" onclick="setColorMode('purple')">Purple</a>
                 </div>
             </div>
-      
+            <a href="theory-page.html">Theory</a>
       <a href="index.html#news">News</a>
+      <div class="easter-egg">
+      <a  href="jeremy-page.html" >Jeremy</a>
+      </div>
     </div>
     </div>
     </nav>
-        <h1>Alternative Self</h1>
-        <textarea id="altSelfDescription" placeholder="Describe the alternative self..."></textarea>
-        <button onclick="saveAltSelfDetails()">Save</button>
-    </div>
 
-    <div>
-        <h2>Appearance</h2>
-        <textarea id="newAppearancePrompt" placeholder="Add appearance detail..."></textarea>
-        <button id="addAppearancePrompt">Add Appearance</button>
-        <div id="appearanceList"></div>
-    </div>
+    <h1 id="altSelfName"></h1>
+    <button onclick="editAltSelfName()">Edit Name</button>
+    <br><br>
 
-    <div>
-        <h2>Personality</h2>
-        <textarea id="newPersonalityPrompt" placeholder="Add personality detail..."></textarea>
-        <button id="addPersonalityPrompt">Add Personality</button>
-        <div id="personalityList"></div>
-    </div>
+    <label for="altSelfDetails">Details:</label>
+    <textarea id="altSelfDetails" rows="10" cols="50"></textarea>
+    <br><br>
+<button onclick="saveAltSelfDetails()">Save Details</button>
+     <!-- Appearance Section -->
+     <h2>Appearance</h2>
+     <input type="text" id="newAppearancePrompt" placeholder="Enter appearance detail">
+     <button onclick="addAppearance()">Add Appearance</button>
+     <div id="appearanceList"></div>
+ 
+     <!-- Age Section -->
+     <h2>Age</h2>
+     <input type="text" id="newAgePrompt" placeholder="Enter age or birthdate">
+     <button onclick="setAge()">Set Age</button>
+     <p id="ageDisplay">Not set</p>
+ 
+     <!-- Personality Section -->
+     <h2>Personality</h2>
+     <input type="text" id="newPersonalityPrompt" placeholder="Enter personality trait">
+     <button onclick="addPersonality()">Add Personality</button>
+     <div id="personalityList"></div>
+ 
+     <!-- Backstory Section -->
+     <h2>Backstory</h2>
+     <textarea id="backstoryDisplay" placeholder="Enter backstory details..." rows="5" cols="50"></textarea>
+     <br>
+     <button onclick="saveBackstory()">Save Backstory</button>
 
-    <div>
-        <h2>Backstory</h2>
-        <textarea id="newBackstoryPrompt" placeholder="Add backstory detail..."></textarea>
-        <button id="addBackstoryPrompt">Add Backstory</button>
-        <div id="backstoryList"></div>
-    </div>
+    
 </body>
-
 </html>

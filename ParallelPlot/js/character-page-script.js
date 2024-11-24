@@ -1,18 +1,14 @@
 // Retrieve the selected character ID and AU ID
 const currentCharacterId = localStorage.getItem("currentCharacterId");
-
 if (!currentCharacterId) {
     // Redirect to AU page if no character is selected
     window.location.href = "au-page.html";
 }
-
 const characterDetailsKey = `characterDetails-${currentCharacterId}`;
 let characterDetails = localStorage.getItem(characterDetailsKey) || "";
-
 // Populate character page with saved details
 const characterDetailsArea = document.getElementById("characterDetails");
 characterDetailsArea.value = characterDetails;
-
 // Save the character details when changes are made
 characterDetailsArea.addEventListener("input", () => {
     localStorage.setItem(characterDetailsKey, characterDetailsArea.value);
@@ -22,30 +18,27 @@ const listsKeys = {
     appearance: `appearanceList-${currentCharacterId}`,
     personality: `personalityList-${currentCharacterId}`,
     backstory: `backstoryList-${currentCharacterId}`,
+    age: `ageList-${currentCharacterId}`,
 };
-
 // --- Initialize lists from localStorage ---
 const lists = {
     appearance: JSON.parse(localStorage.getItem(listsKeys.appearance)) || [],
     personality: JSON.parse(localStorage.getItem(listsKeys.personality)) || [],
     backstory: JSON.parse(localStorage.getItem(listsKeys.backstory)) || [],
+    age: JSON.parse(localStorage.getItem(listsKeys.age)) || [],
 };
-
 // Save a specific list to localStorage
 function saveList(type) {
     localStorage.setItem(listsKeys[type], JSON.stringify(lists[type]));
 }
-
 // Render a specific list
 function renderList(type) {
     const container = document.getElementById(`${type}List`);
     container.innerHTML = "";
-
     lists[type].forEach((item, index) => {
         const listItem = document.createElement("div");
         listItem.className = `${type}-item`;
         listItem.style.color = item.color;
-
         listItem.innerHTML = `
             <span>${item.prompt}</span>
             <button onclick="editPrompt('${type}', ${index})">Edit</button>
@@ -62,19 +55,15 @@ function applyColorMode() {
     const mode = localStorage.getItem('colorMode') || 'light';  // Default to light mode
     setColorMode(mode);
 }
-
 // Function to switch modes
 function changeMode(mode) {
     // Reset all mode classes first
     document.body.classList.remove('light-mode', 'dark-mode', 'low-contrast-mode', 'purple-mode');
-
     // Add the selected mode class to the body
     document.body.classList.add(mode);
-
     // Save the selected mode to localStorage so it persists on page load
     localStorage.setItem('selectedMode', mode);
 }
-
 // Function to load the saved mode on page load
 function loadSavedMode() {
     const savedMode = localStorage.getItem('selectedMode');
@@ -85,34 +74,28 @@ function loadSavedMode() {
         changeMode('light-mode'); // Default to light mode if no mode is saved
     }
 }
-
 // Call loadSavedMode on page load
 loadSavedMode();
-
 // Event listener to switch modes
 document.getElementById('lightModeBtn').addEventListener('click', () => changeMode('light-mode'));
 document.getElementById('darkModeBtn').addEventListener('click', () => changeMode('dark-mode'));
 document.getElementById('lowContrastModeBtn').addEventListener('click', () => changeMode('low-contrast-mode'));
 document.getElementById('purpleModeBtn').addEventListener('click', () => changeMode('purple-mode'));
-
 // Add a new prompt
 function addPrompt(type) {
     const inputId = `new${capitalize(type)}Prompt`;
     const prompt = document.getElementById(inputId).value.trim();
-
     if (prompt) {
         const item = {
             prompt: prompt,
             color: "#000000", // Default color
         };
-
         lists[type].push(item);
         document.getElementById(inputId).value = "";
         saveList(type);
         renderList(type);
     }
 }
-
 // Edit an existing prompt
 function editPrompt(type, index) {
     const newPrompt = prompt(`Edit ${type} detail:`, lists[type][index].prompt);
@@ -122,7 +105,6 @@ function editPrompt(type, index) {
         renderList(type);
     }
 }
-
 // Move a prompt up
 function movePromptUp(type, index) {
     if (index > 0) {
@@ -131,7 +113,6 @@ function movePromptUp(type, index) {
         renderList(type);
     }
 }
-
 // Move a prompt down
 function movePromptDown(type, index) {
     if (index < lists[type].length - 1) {
@@ -140,7 +121,6 @@ function movePromptDown(type, index) {
         renderList(type);
     }
 }
-
 // Delete a prompt
 function deletePrompt(type, index) {
     if (confirm(`Delete this ${type} detail?`)) {
@@ -149,24 +129,21 @@ function deletePrompt(type, index) {
         renderList(type);
     }
 }
-
 // Change font color of a prompt
 function changePromptColor(type, index, color) {
     lists[type][index].color = color;
     saveList(type);
     renderList(type);
 }
-
 // Helper to capitalize strings
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
 // Render all lists on page load
 renderList("appearance");
 renderList("personality");
 renderList("backstory");
-
+renderList("age")
 // --- Initialize Alternative Selves ---
 const altSelfKey = `altSelfList-${currentCharacterId}`;
 const altSelfList = JSON.parse(localStorage.getItem(altSelfKey)) || [];
@@ -180,12 +157,10 @@ function saveAltSelfList() {
 function renderAltSelfList() {
     const container = document.getElementById("altSelfList");
     container.innerHTML = "";
-
     altSelfList.forEach((altSelf, index) => {
         const listItem = document.createElement("div");
         listItem.className = "alt-self-item";
         listItem.style.backgroundColor = altSelf.color;
-
         listItem.innerHTML = `
             <button onclick="goToAltSelf('${altSelf.id}')">${altSelf.name}</button>
             <button onclick="editAltSelfName(${index})">Edit</button>
@@ -194,7 +169,6 @@ function renderAltSelfList() {
             <button onclick="deleteAltSelf(${index})">Delete</button>
             <input type="color" value="${altSelf.color}" onchange="changeAltSelfColor(${index}, this.value)">
         `;
-
         container.appendChild(listItem);
     });
 }
@@ -212,6 +186,8 @@ function addAltSelf() {
         document.getElementById("newAltSelfName").value = ""; // Clear input
         saveAltSelfList();
         renderAltSelfList();
+    } else {
+        alert("Please enter a name for the alternative self.");
     }
 }
 
@@ -261,6 +237,7 @@ function changeAltSelfColor(index, color) {
 
 // Redirect to an Alternative Self's page
 function goToAltSelf(id) {
+    console.log("Redirecting to alternative self:", id);
     window.location.href = `alt-self-page.html?id=${id}`;
 }
 

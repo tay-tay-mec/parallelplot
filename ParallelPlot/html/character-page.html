@@ -21,7 +21,7 @@
                 <a href="#" id="purpleModeBtn" onclick="setColorMode('purple')">Purple</a>
             </div>
         </div>
-  
+        <a href="theory-page.html">Theory</a>
   <a href="index.html#news">News</a>
 </div>
 </div>
@@ -31,9 +31,14 @@
     <textarea id="characterDetails" placeholder="Write character details here..." rows="10" cols="50"></textarea>
     <br>
 
+    <h2>Age</h2>
+    <input type="text" id="newAgePrompt" placeholder="Enter age/birthdate">
+    <button onclick="addPrompt('age')">Add Age/Birthdate</button>
+    <div id="ageList"></div>
+
     <h2>Appearance</h2>
     <input type="text" id="newAppearancePrompt" placeholder="Enter appearance detail">
-    <button onclick="addAppearance()">Add Appearance</button>
+    <button onclick="addPrompt('appearance')">Add Appearance</button>
     <div id="appearanceList"></div>
 
     <h2>Personality</h2>
@@ -46,10 +51,13 @@
     <button onclick="addPrompt('backstory')">Add Backstory</button>
     <div id="backstoryList"></div>
 
-    <h2>Alternative Selves</h2>
-    <input type="text" id="newAltSelfName" placeholder="Enter alternative self name">
-    <button onclick="addAltSelf()">Add Alternative Self</button>
+    <div>
+        <h2>Alternative Selves</h2>
+        <input id="newAltSelfName" placeholder="Enter a new alternative self name">
+        <button onclick="addAltSelf()">Add Alternative Self</button>
+    </div>
     <div id="altSelfList"></div>
+    
 
     
 </body>
