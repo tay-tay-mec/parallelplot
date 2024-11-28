@@ -1,12 +1,7 @@
 // Function to set and apply a color mode
 function setColorMode(mode) {
-    // Remove all existing color mode classes
     document.body.classList.remove('light-mode', 'dark-mode', 'low-contrast-mode', 'purple-mode');
-    
-    // Add the selected color mode class to the body
     document.body.classList.add(`${mode}-mode`);
-    
-    // Save the selected mode to localStorage for persistence
     localStorage.setItem('colorMode', mode);
 }
 
@@ -17,8 +12,7 @@ function applySavedColorMode() {
 }
 
 // Apply the saved color mode when the page loads
-applySavedColorMode();
-
+document.addEventListener("DOMContentLoaded", applySavedColorMode);
 
 // Utility function to get query parameters
 function getQueryParam(param) {
@@ -30,7 +24,16 @@ function getQueryParam(param) {
 const altSelfId = getQueryParam('id');
 const currentCharacterId = localStorage.getItem('currentCharacterId') || "defaultCharacter";
 const altSelfKey = `altSelfList-${currentCharacterId}`;
-const altSelfList = JSON.parse(localStorage.getItem(altSelfKey)) || [];
+
+// Validate and parse `altSelfList` from localStorage
+let altSelfList = [];
+try {
+    altSelfList = JSON.parse(localStorage.getItem(altSelfKey)) || [];
+} catch (e) {
+    console.error("Invalid JSON in localStorage for altSelfList:", e);
+    localStorage.removeItem(altSelfKey); // Clear corrupted data
+}
+
 const currentAltSelf = altSelfList.find((altSelf) => altSelf.id === altSelfId);
 
 if (!currentAltSelf) {
@@ -40,31 +43,38 @@ if (!currentAltSelf) {
 
 // Render Alternative Self Details
 function renderAltSelfDetails() {
-    const nameElement = document.getElementById("altSelfName");
-    const colorPicker = document.getElementById("altSelfColor");
-    const detailsText = document.getElementById("altSelfDetails");
+    try {
+        const nameElement = document.getElementById("altSelfName");
+        const colorPicker = document.getElementById("altSelfColor");
+        const detailsText = document.getElementById("altSelfDetails");
 
-    nameElement.textContent = currentAltSelf.name;
-    colorPicker.value = currentAltSelf.color;
-    detailsText.value = currentAltSelf.details || "";
+        if (nameElement) nameElement.textContent = currentAltSelf?.name || "Unknown Name";
+        if (colorPicker) colorPicker.value = currentAltSelf?.color || "#000000"; // Default color
+        if (detailsText) detailsText.value = currentAltSelf?.details || "";
+    } catch (e) {
+        console.error("Error rendering Alternative Self details:", e);
+    }
 }
 
 // Save Alternative Self Details
 function saveAltSelfDetails() {
-    const newDetails = document.getElementById("altSelfDetails").value;
-    const newColor = document.getElementById("altSelfColor").value;
+    try {
+        const newDetails = document.getElementById("altSelfDetails").value;
+        const newColor = document.getElementById("altSelfColor").value;
 
-    currentAltSelf.details = newDetails;
-    currentAltSelf.color = newColor;
+        currentAltSelf.details = newDetails;
+        currentAltSelf.color = newColor;
 
-    // Save updates to localStorage
-    localStorage.setItem(altSelfKey, JSON.stringify(altSelfList));
-    alert("Alternative self details saved!");
+        localStorage.setItem(altSelfKey, JSON.stringify(altSelfList));
+        alert("Alternative self details saved!");
+    } catch (e) {
+        console.error("Error saving Alternative Self details:", e);
+    }
 }
 
 // Edit Alternative Self Name
 function editAltSelfName() {
-    const newName = prompt("Edit alternative self name:", currentAltSelf.name);
+    const newName = prompt("Edit alternative self name:", currentAltSelf?.name || "Unknown Name");
     if (newName) {
         currentAltSelf.name = newName;
         localStorage.setItem(altSelfKey, JSON.stringify(altSelfList));
@@ -72,54 +82,67 @@ function editAltSelfName() {
     }
 }
 
-// Render details on page load
-renderAltSelfDetails();
-
 // Initialize data storage for character details
 const characterDataKey = `characterData-${currentCharacterId}`;
-const characterData = JSON.parse(localStorage.getItem(characterDataKey)) || {
-    appearance: [],
-    age: '',
-    personality: [],
-    backstory: '',
-};
+let characterData = {};
+try {
+    characterData = JSON.parse(localStorage.getItem(characterDataKey)) || {
+        appearance: [],
+        age: '',
+        personality: [],
+        backstory: '',
+    };
+} catch (e) {
+    console.error("Invalid JSON in localStorage for characterData:", e);
+    characterData = { appearance: [], age: '', personality: [], backstory: '' };
+}
 
 // Save character data to localStorage
 function saveCharacterData() {
-    localStorage.setItem(characterDataKey, JSON.stringify(characterData));
+    try {
+        localStorage.setItem(characterDataKey, JSON.stringify(characterData));
+    } catch (e) {
+        console.error("Error saving character data:", e);
+    }
 }
 
 // Render all sections
 function renderCharacterData() {
-    // Render Appearance
-    const appearanceContainer = document.getElementById("appearanceList");
-    appearanceContainer.innerHTML = "";
-    characterData.appearance.forEach((detail, index) => {
-        const item = document.createElement("div");
-        item.innerHTML = `
-            ${detail}
-            <button onclick="removeAppearance(${index})">Remove</button>
-        `;
-        appearanceContainer.appendChild(item);
-    });
+    try {
+        const appearanceContainer = document.getElementById("appearanceList");
+        if (appearanceContainer) {
+            appearanceContainer.innerHTML = "";
+            characterData.appearance.forEach((detail, index) => {
+                const item = document.createElement("div");
+                item.innerHTML = `
+                    ${detail}
+                    <button onclick="removeAppearance(${index})">Remove</button>
+                `;
+                appearanceContainer.appendChild(item);
+            });
+        }
 
-    // Render Age
-    document.getElementById("ageDisplay").textContent = characterData.age || "Not set";
+        const ageDisplay = document.getElementById("ageDisplay");
+        if (ageDisplay) ageDisplay.textContent = characterData.age || "Not set";
 
-    // Render Personality
-    const personalityContainer = document.getElementById("personalityList");
-    personalityContainer.innerHTML = "";
-    characterData.personality.forEach((trait, index) => {
-        const item = document.createElement("div");
-        item.innerHTML = `
-            ${trait}
-            <button onclick="removePersonality(${index})">Remove</button>
-        `;
-        personalityContainer.appendChild(item);
-    });
+        const personalityContainer = document.getElementById("personalityList");
+        if (personalityContainer) {
+            personalityContainer.innerHTML = "";
+            characterData.personality.forEach((trait, index) => {
+                const item = document.createElement("div");
+                item.innerHTML = `
+                    ${trait}
+                    <button onclick="removePersonality(${index})">Remove</button>
+                `;
+                personalityContainer.appendChild(item);
+            });
+        }
 
-    // Render Backstory
-    document.getElementById("backstoryDisplay").value = characterData.backstory || "";
+        const backstoryDisplay = document.getElementById("backstoryDisplay");
+        if (backstoryDisplay) backstoryDisplay.value = characterData.backstory || "";
+    } catch (e) {
+        console.error("Error rendering character data:", e);
+    }
 }
 
 // Add Appearance Detail
@@ -177,6 +200,137 @@ function saveBackstory() {
     alert("Backstory saved!");
 }
 
-// Render data on page load
-renderCharacterData();
+// Initialize and render data on page load
+document.addEventListener("DOMContentLoaded", () => {
+    renderAltSelfDetails();
+    renderCharacterData();
+});
+// Save Gacha Code
+function saveGachaCode() {
+    const newGachaCode = document.getElementById("gachaCodeInput").value.trim();
 
+    if (newGachaCode) {
+        currentAltSelf.gachaCode = newGachaCode; // Save to the current alternative self
+        localStorage.setItem(altSelfKey, JSON.stringify(altSelfList)); // Persist data
+        renderGachaCode(); // Update the display
+        alert("Gacha Code saved!");
+    } else {
+        alert("Please enter a valid Gacha Code.");
+    }
+}
+
+// Render Gacha Code
+function renderGachaCode() {
+    const gachaCodeDisplay = document.getElementById("gachaCodeDisplay");
+
+    if (currentAltSelf.gachaCode) {
+        gachaCodeDisplay.textContent = `Gacha Code: ${currentAltSelf.gachaCode}`;
+    } else {
+        gachaCodeDisplay.textContent = "No Gacha Code Set";
+    }
+}
+
+// Call this in the renderAltSelfDetails function to load the Gacha Code on page load
+function renderAltSelfDetails() {
+    try {
+        const nameElement = document.getElementById("altSelfName");
+        const colorPicker = document.getElementById("altSelfColor");
+        const detailsText = document.getElementById("altSelfDetails");
+
+        if (nameElement) nameElement.textContent = currentAltSelf?.name || "Unknown Name";
+        if (colorPicker) colorPicker.value = currentAltSelf?.color || "#000000"; // Default color
+        if (detailsText) detailsText.value = currentAltSelf?.details || "";
+
+        renderGachaCode(); // Render Gacha Code
+    } catch (e) {
+        console.error("Error rendering Alternative Self details:", e);
+    }
+}
+// Initialize Pickr
+const pickr = Pickr.create({
+    el: '#colorPickerContainer',
+    theme: 'classic', // or 'monolith', or 'nano'
+    default: currentAltSelf?.color || '#000000', // Default to saved color or black
+
+    components: {
+        // Main components
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        // Input / output Options
+        interaction: {
+            hex: true,
+            rgba: true,
+            hsla: true,
+            input: true,
+            save: true, // Show save button
+        },
+    },
+});
+
+// Handle color change events
+pickr.on('save', (color) => {
+    const newColor = color.toHEXA().toString();
+    currentAltSelf.color = newColor; // Save to the current Alternative Self object
+    localStorage.setItem(altSelfKey, JSON.stringify(altSelfList)); // Persist changes
+    alert('Color saved!');
+});
+
+// Optional: Update UI on color pick (live preview)
+pickr.on('change', (color) => {
+    document.body.style.backgroundColor = color.toHEXA().toString(); // Example of live preview
+});
+// Render Profile Picture
+function renderProfilePicture() {
+    const profilePicture = document.getElementById("profilePicture");
+    profilePicture.src = currentAltSelf.profilePicture || "default-image.png";
+}
+
+// Save Profile Picture
+function saveProfilePicture() {
+    const fileInput = document.getElementById("profilePictureUpload");
+    const urlInput = document.getElementById("profilePictureURL");
+    const profilePicture = document.getElementById("profilePicture");
+
+    if (fileInput.files.length > 0) {
+        // Handle file upload
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const imageData = event.target.result; // Base64 string
+            currentAltSelf.profilePicture = imageData; // Save to current alternative self
+            localStorage.setItem(altSelfKey, JSON.stringify(altSelfList)); // Persist changes
+            profilePicture.src = imageData; // Update UI
+            alert("Profile picture saved!");
+        };
+        reader.readAsDataURL(file);
+    } else if (urlInput.value.trim() !== "") {
+        // Handle URL input
+        const imageUrl = urlInput.value.trim();
+        currentAltSelf.profilePicture = imageUrl; // Save to current alternative self
+        localStorage.setItem(altSelfKey, JSON.stringify(altSelfList)); // Persist changes
+        profilePicture.src = imageUrl; // Update UI
+        alert("Profile picture saved!");
+    } else {
+        alert("Please upload an image or enter a valid URL.");
+    }
+}
+
+// Call this in the renderAltSelfDetails function to load the profile picture on page load
+function renderAltSelfDetails() {
+    try {
+        const nameElement = document.getElementById("altSelfName");
+        const colorPicker = document.getElementById("altSelfColor");
+        const detailsText = document.getElementById("altSelfDetails");
+
+        if (nameElement) nameElement.textContent = currentAltSelf?.name || "Unknown Name";
+        if (colorPicker) colorPicker.value = currentAltSelf?.color || "#000000"; // Default color
+        if (detailsText) detailsText.value = currentAltSelf?.details || "";
+
+        renderGachaCode(); // Render Gacha Code
+        renderProfilePicture(); // Render Profile Picture
+    } catch (e) {
+        console.error("Error rendering Alternative Self details:", e);
+    }
+}

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/au-pages.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
 </head>
 <body>
   <nav>
@@ -32,6 +35,9 @@
     <textarea id="auContent" placeholder="Add notes here..." rows="10" cols="50"></textarea>
     <br>
 
+    <!-- Color Picker Section -->
+    <h2>Color Picker</h2>
+    <div id="colorPickerContainer"></div>
     <h2>Characters</h2>
     <input type="text" id="newCharacterName" placeholder="Enter character name">
     <button onclick="addCharacter()">Add Character</button>

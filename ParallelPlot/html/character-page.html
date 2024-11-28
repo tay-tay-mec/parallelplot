@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/character-page-script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
 </head>
 <body>
   <nav>
@@ -26,8 +29,22 @@
 </div>
 </div>
 </nav>
+
+    <!-- Color Picker Section -->
+    <h2>Color Picker</h2>
+    <div id="colorPickerContainer"></div>
     <h1 id="characterName">Character Page</h1>
-    
+    <!-- Profile Picture Section -->
+<h2>Profile Picture</h2>
+<div id="profilePictureContainer">
+    <img id="profilePicture" src="default-image.png" alt="Profile Picture" style="max-width: 150px; border-radius: 50%; display: block; margin-bottom: 10px;">
+</div>
+<label for="profilePictureUpload">Upload Image:</label>
+<input type="file" id="profilePictureUpload" accept="image/*">
+<br><br>
+<label for="profilePictureURL">Or Enter Image URL:</label>
+<input type="text" id="profilePictureURL" placeholder="Enter image URL">
+<button onclick="saveProfilePicture()">Save Profile Picture</button>
     <textarea id="characterDetails" placeholder="Write character details here..." rows="10" cols="50"></textarea>
     <br>
 
@@ -50,6 +67,11 @@
     <input type="text" id="newBackstoryPrompt" placeholder="Enter backstory detail">
     <button onclick="addPrompt('backstory')">Add Backstory</button>
     <div id="backstoryList"></div>
+
+    <h2>Code</h2>
+    <input type="text" id="newCodePrompt" placeholder="Enter Code">
+    <button onclick="addPrompt('code')">Add Code</button>
+    <div id="codeList"></div>
 
     <div>
         <h2>Alternative Selves</h2>

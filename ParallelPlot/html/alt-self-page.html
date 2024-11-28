@@ -6,6 +6,9 @@
     <title>Alternative Self</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
 
     <script src="../js/alt-self-script.js" defer></script>
 </head>
@@ -35,6 +38,23 @@
     <button onclick="editAltSelfName()">Edit Name</button>
     <br><br>
 
+    <!-- Color Picker Section -->
+<h2>Color Picker</h2>
+<div id="colorPickerContainer"></div>
+
+<!-- Profile Picture Section -->
+<h2>Profile Picture</h2>
+<div id="profilePictureContainer">
+    <img id="profilePicture" src="default-image.png" alt="Profile Picture" style="max-width: 150px; border-radius: 50%; display: block; margin-bottom: 10px;">
+</div>
+<label for="profilePictureUpload">Upload Image:</label>
+<input type="file" id="profilePictureUpload" accept="image/*">
+<br><br>
+<label for="profilePictureURL">Or Enter Image URL:</label>
+<input type="text" id="profilePictureURL" placeholder="Enter image URL">
+<button onclick="saveProfilePicture()">Save Profile Picture</button>
+
+
     <label for="altSelfDetails">Details:</label>
     <textarea id="altSelfDetails" rows="10" cols="50"></textarea>
     <br><br>
@@ -56,7 +76,13 @@
      <input type="text" id="newPersonalityPrompt" placeholder="Enter personality trait">
      <button onclick="addPersonality()">Add Personality</button>
      <div id="personalityList"></div>
- 
+
+<!-- Gacha Code Section -->
+<h2>Gacha Code</h2>
+<input type="text" id="gachaCodeInput" placeholder="Enter Gacha Code">
+<button onclick="saveGachaCode()">Save Gacha Code</button>
+<p id="gachaCodeDisplay">No Gacha Code Set</p>
+
      <!-- Backstory Section -->
      <h2>Backstory</h2>
      <textarea id="backstoryDisplay" placeholder="Enter backstory details..." rows="5" cols="50"></textarea>

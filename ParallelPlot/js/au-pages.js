@@ -349,3 +349,38 @@ function changeFamilyColor(index, color) {
 
 // Render family list on page load
 renderFamilyList();
+// Initialize Pickr
+const pickr = Pickr.create({
+    el: '#colorPickerContainer',
+    theme: 'classic', // or 'monolith', or 'nano'
+    default: currentAltSelf?.color || '#000000', // Default to saved color or black
+
+    components: {
+        // Main components
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        // Input / output Options
+        interaction: {
+            hex: true,
+            rgba: true,
+            hsla: true,
+            input: true,
+            save: true, // Show save button
+        },
+    },
+});
+
+// Handle color change events
+pickr.on('save', (color) => {
+    const newColor = color.toHEXA().toString();
+    currentAltSelf.color = newColor; // Save to the current Alternative Self object
+    localStorage.setItem(altSelfKey, JSON.stringify(altSelfList)); // Persist changes
+    alert('Color saved!');
+});
+
+// Optional: Update UI on color pick (live preview)
+pickr.on('change', (color) => {
+    document.body.style.backgroundColor = color.toHEXA().toString(); // Example of live preview
+});

@@ -869,3 +869,14 @@ body.low-contrast-mode .easter-egg a:hover{
  .purple-mode .easter-egg a{
     color: #d9ff00;
 }
+#profilePicture {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+#profilePictureUpload, #profilePictureURL {
+    margin-bottom: 10px;
+}
