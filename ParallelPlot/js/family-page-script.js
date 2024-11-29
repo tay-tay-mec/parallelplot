@@ -214,3 +214,6 @@ pickr.on('save', (color) => {
 pickr.on('change', (color) => {
     document.body.style.backgroundColor = color.toHEXA().toString(); // Example of live preview
 });
+function goBack() {
+    window.history.back();
+}

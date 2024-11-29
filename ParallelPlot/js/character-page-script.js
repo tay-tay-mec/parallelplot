@@ -334,3 +334,6 @@ function renderAltSelfDetails() {
         console.error("Error rendering Alternative Self details:", e);
     }
 }
+function goBack() {
+    window.history.back();
+}

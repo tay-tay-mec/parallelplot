@@ -169,8 +169,8 @@ const pickr = Pickr.create({
 // Handle color change events
 pickr.on('save', (color) => {
     const newColor = color.toHEXA().toString();
-    currentAltSelf.color = newColor; // Save to the current Alternative Self object
-    localStorage.setItem(altSelfKey, JSON.stringify(altSelfList)); // Persist changes
+    currentIndex.color = newColor; // Save to the current Alternative Self object
+    localStorage.setItem(indexKey, JSON.stringify(indexList)); // Persist changes
     alert('Color saved!');
 });
 
@@ -178,3 +178,6 @@ pickr.on('save', (color) => {
 pickr.on('change', (color) => {
     document.body.style.backgroundColor = color.toHEXA().toString(); // Example of live preview
 });
+function goBack() {
+    window.history.back();
+}
