@@ -36,12 +36,13 @@
     <textarea id="auContent" placeholder="Add notes here..." rows="10" cols="50"></textarea>
     <br>
 
-    
+
     <h2>Characters</h2>
-    <input type="text" id="newCharacterName" placeholder="Enter character name">
-    <button onclick="addCharacter()">Add Character</button>
-    
-    <div id="characterList"></div>
+<input type="text" id="newCharacterName" placeholder="Enter character name">
+<button onclick="addCharacter()">Add Character</button>
+<br><br>
+<input type="text" id="searchCharacter" placeholder="Search characters..." oninput="filterCharacters()">
+<div id="characterList"></div>
 
     <h2>Timeline</h2>
     <input type="date" id="eventDate">

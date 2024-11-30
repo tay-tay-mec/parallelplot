@@ -387,3 +387,42 @@ pickr.on('change', (color) => {
 function goBack() {
     window.history.back();
 }
+
+// Function to filter characters based on search input
+function filterCharacters() {
+    const searchQuery = document.getElementById("searchCharacter").value.toLowerCase();
+    const filteredCharacters = characterList.filter(character =>
+        character.name.toLowerCase().includes(searchQuery)
+    );
+    renderFilteredCharacterList(filteredCharacters);
+}
+
+// Render only the filtered characters
+function renderFilteredCharacterList(filteredList) {
+    const characterListContainer = document.getElementById("characterList");
+    characterListContainer.innerHTML = '';
+
+    filteredList.forEach((character, index) => {
+        const characterItem = document.createElement("div");
+        characterItem.className = "character-item";
+        characterItem.style.backgroundColor = character.color;
+
+        characterItem.innerHTML = `
+            <button class="character-button" onclick="navigateToCharacter(${character.id})">${character.name}</button>
+            <button onclick="editCharacter(${character.id})" class="edit-character">Edit</button>
+            <button onclick="moveCharacterUp(${index})">Move Up</button>
+            <button onclick="moveCharacterDown(${index})">Move Down</button>
+            <button onclick="deleteCharacter(${index})">Delete</button>
+            <input type="color" value="${character.color}" onchange="changeCharacterColor(${index}, this.value)" />
+        `;
+        characterListContainer.appendChild(characterItem);
+    });
+}
+
+// Update the renderCharacterList to work with both full and filtered lists
+function renderCharacterList() {
+    renderFilteredCharacterList(characterList);
+}
+
+// Render the full character list on page load
+renderCharacterList();

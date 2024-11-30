@@ -337,3 +337,4 @@ function renderAltSelfDetails() {
 function goBack() {
     window.history.back();
 }
+
